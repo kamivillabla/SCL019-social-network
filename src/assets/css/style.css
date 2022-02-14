@@ -131,10 +131,11 @@ p {
   width: 1rem;
 }
 
+
 /* Pagina login Móviles en horizontal o tablets en vertical */
 @media (min-width: 768px) { 
   .containerRoot__grid {
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 90vh auto;
     align-items: center;
     justify-items: center;
@@ -156,19 +157,7 @@ p {
   h1 {
     font-size: 2.7rem;
   }
-  .containerRoot__grid {
-    grid-template-columns: 50vw auto;
-    grid-template-rows: 90vh auto;
-    align-items: center;
-     grid-template-areas: 
-    "main logo"
-    "footer footer";
-  }
-  .login__container {
-    width: 90%;
-  }
   .login__logoImg {
-    width: 100%;
     height: 80vh;
   }
  }
@@ -177,9 +166,9 @@ p {
 footer {
   grid-area: footer;
   text-align: center;
-  line-height: 1.3rem;
+ padding-top: 2.5rem;
   background-color: var(--darkLigth--color);
-  height: 3rem;
+  height: 8rem;
 }
 footer p, footer a {
   font-size: 1rem;
