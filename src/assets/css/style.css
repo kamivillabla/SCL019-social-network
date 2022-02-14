@@ -1,0 +1,25 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10px;
+}
+
+/* Colores predefinidos */
+:root { 
+  --rosa--color: #FF857F;
+  --dark--color: #1F1F23;
+  --white--color: #eee;
+}
+
+/* Fuentes pre Definidas */
+
+:root {
+  --fonts-revalia: 'Revalia', cursive;
+  --fonts-yaldevi: 'Yaldevi', sans-serif;
+}
+
+
