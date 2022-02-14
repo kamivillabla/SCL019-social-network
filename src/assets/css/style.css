@@ -3,6 +3,23 @@
   padding:0;
   box-sizing: border-box;
 }
+/* Reseteo estilos button */
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  
+}
+input:focus {
+  outline: none;
+}
+input[placeholder] {
+  padding-left: 1rem;
+}
 
 body {
   font-size: 10px;
@@ -11,8 +28,10 @@ body {
 /* Colores predefinidos */
 :root { 
   --rosa--color: #FF857F;
-  --dark--color: #1F1F23;
+  --darkLigth--color: #1F1F23;
+  --darkLightTrans--color: #7D7D7D;
   --white--color: #eee;
+  --dark--color: #000;
 }
 
 /* Fuentes pre Definidas */
@@ -22,4 +41,147 @@ body {
   --fonts-yaldevi: 'Yaldevi', sans-serif;
 }
 
+a{ 
+  text-decoration: none;
+  color: var(--dark--color)
+}
+a:hover {
+  color: var(--rosa--color);
+}
 
+body {
+  min-height: 100%;
+  background-color: var(--darkLigth--color);
+  font-family: var(--fonts-yaldevi);
+  color: var(--white--color);
+}
+
+/* Estilo fuentes Movil */
+
+h1 {
+  font-family: var(--fonts-revalia);
+  font-size: 2rem;
+  color: var(--rosa--color);
+}
+
+p {
+  font-family: var(--fonts-yaldevi);
+  font-size: 1.3rem;
+}
+
+/* Página Login movile */
+.containerRoot__grid {
+  display: grid;
+  gap:1rem;
+  grid-template-areas: 
+        "logo"
+        "main"
+        "footer"; 
+        
+}
+.login__logo {
+  grid-area: logo;
+}
+.login__container {
+  grid-area: main;
+  width: 100%
+}
+.login__form {
+  width: 95%;
+}
+.login__container input {
+  border: 2px solid var(--rosa--color);
+  border-radius: 30px;
+  width: 100%;
+  height: 2rem;
+}
+
+.login__logoImg {
+  width: 20%;
+}
+
+.login__gridItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.login__linkRegister {
+  color: var(--rosa--color);
+}
+
+.login__buttonLogin {
+  width: 50%;
+  background-color: var(--rosa--color);
+}
+.login__buttonGoogle {
+  width: 100%;
+  background-color: var(--white--color);
+  color: var(--dark--color)
+}
+.login__buttonLogin, .login__buttonGoogle {
+  font-size: 1.2rem;
+  border-radius: 30px;
+  height: 2.5rem;
+}
+
+.login__buttonGoogle__img {
+  width: 1rem;
+}
+
+/* Pagina login Móviles en horizontal o tablets en vertical */
+@media (min-width: 768px) { 
+  .containerRoot__grid {
+    grid-template-columns: auto auto;
+    grid-template-rows: 90vh auto;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas: 
+    "main   logo"
+    "footer footer";
+  }
+  .login__container {
+    width: 90%;
+  }
+  .login__logoImg {
+    width: 100%;
+    height: 70vh;
+  }
+}
+
+/* Pagina login Tablets en horizonal y desktop tamaño normal */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2.7rem;
+  }
+  .containerRoot__grid {
+    grid-template-columns: 50vw auto;
+    grid-template-rows: 90vh auto;
+    align-items: center;
+     grid-template-areas: 
+    "main logo"
+    "footer footer";
+  }
+  .login__container {
+    width: 90%;
+  }
+  .login__logoImg {
+    width: 100%;
+    height: 80vh;
+  }
+ }
+
+/* Footer */
+footer {
+  grid-area: footer;
+  text-align: center;
+  line-height: 1.3rem;
+  background-color: var(--darkLigth--color);
+  height: 3rem;
+}
+footer p, footer a {
+  font-size: 1rem;
+  color: var(--darkLightTrans--color);
+}
