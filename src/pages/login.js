@@ -1,9 +1,9 @@
-import { footer } from "../component/footer.js";
+import { footer } from '../component/footer.js';
 
 export const login = () => {
   // Acá ira lo que desplegaremos.
-  const loginContainer = document.createElement("div");
-  loginContainer.classList.add("containerRoot__grid");
+  const loginContainer = document.createElement('div');
+  loginContainer.classList.add('containerRoot__grid');
   loginContainer.innerHTML = `
   <div class="login__logo login__gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">

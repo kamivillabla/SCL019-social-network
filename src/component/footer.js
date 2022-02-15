@@ -1,7 +1,7 @@
 export const footer = () => {
   const footerContainer = document.createElement('footer');
   footerContainer.innerHTML = `
-  <p>Copyright &copy; 2022 <a href="#">Javiera Munita</a>, <a href="#">Karen Escobar</a> and <a href="#">Kamila Villablanca</a> <br> (<a href="#"> Créditos a Daniela Alcalá<a/>) </p>
+  <p>Copyright &copy; 2022 <a target="_blank" href="https://github.com/JavieraMunita">Javiera Munita</a>, <a href="https://github.com/Escobark21" target="_blank">Karen Escobar</a> and <a target="_blank" href="https://github.com/kuveee">Kamila Villablanca</a> <br> ( Créditos a <a href="#">Daniela Alcalá<a/>) </p>
   
   `;
   return footerContainer;
