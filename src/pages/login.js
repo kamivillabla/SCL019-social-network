@@ -27,7 +27,7 @@ export const login = () => {
       </form>
 
     <div class="login__register">
-      <p>¿Aún no estas en alcohodemia? <a class="login__linkRegister" href="#/register">Registrate</a></p>
+      <p>¿Aún no estas en alcohodemia? <a class="login__linkRegister" href="#/registro">Registrate</a></p>
     </div>
   </main>
   `;

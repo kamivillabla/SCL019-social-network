@@ -1,10 +1,10 @@
-import { footer } from "../component/footer.js";
-import { auth, registro } from "../lib/firebase.js";
+import { footer } from '../component/footer.js';
+import { newRegister } from '../lib/firebase.js';
 
 export const register = () => {
   // Acá ira lo que desplegaremos.
-  const loginContainer = document.createElement("div");
-  loginContainer.classList.add("containerRoot__grid");
+  const loginContainer = document.createElement('div');
+  loginContainer.classList.add('containerRoot__grid');
   loginContainer.innerHTML = `
   <div class="login__logo login__gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
@@ -17,10 +17,10 @@ export const register = () => {
           <p>Ingresa tus datos</p>
         </div>
         <div class="login__container login__gridItem">
-          <input type="text" id="registerEmail" placeholder="Email"/>
-          <input type="text" id="userName" placeholder="Usuario"/>
+          <input type="text" id="registerEmail" placeholder="Email" required />
+          <input type="text" id="userName" placeholder="Usuario" required/>
           <input type="password" id="registerPassword" placeholder="Contraseña" required>
-          <button class="register__buttonLogin" type="submit" role="link">Registro</button>
+          <button class="login__buttonLogin" id="registro" type="submit" role="link">Registro</button>
           <p>o</p>
           <button class="login__buttonGoogle" type="button" id="registerButton">
             <img class="login__buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
@@ -33,18 +33,14 @@ export const register = () => {
     </div>
   </main>
   `;
+
+  loginContainer.querySelector('#registro').addEventListener('click', () => {
+    const email = loginContainer.querySelector('#registerEmail').value;
+    const newPass = loginContainer.querySelector('#registerPassword').value;
+    newRegister(email, newPass);
+  });
+
   loginContainer.appendChild(footer());
+
   return loginContainer;
 };
-
-const btnRegister = document.getElementById("registerButton");
-
-//const userName = document.getElementById("userName").value;
-
-btnRegister.addEventListener("click", () => {
-  const email = document.getElementById("registerEmail");
-  const password = document.getElementById("registerPassword");
-  registro(email.value, password.value);
-});
-
-//return btnRegister;
