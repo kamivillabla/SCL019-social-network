@@ -1,5 +1,5 @@
 import { footer } from "../component/footer.js";
-import { auth, registro } from "../lib/firebase.js";
+import { newRegister } from "../lib/firebase.js";
 
 export const register = () => {
   // Acá ira lo que desplegaremos.
@@ -20,7 +20,7 @@ export const register = () => {
           <input type="text" id="registerEmail" placeholder="Email"/>
           <input type="text" id="userName" placeholder="Usuario"/>
           <input type="password" id="registerPassword" placeholder="Contraseña" required>
-          <button class="register__buttonLogin" type="submit" role="link">Registro</button>
+          <button id="registro" class="register__buttonLogin" type="submit">Registro</button>
           <p>o</p>
           <button class="login__buttonGoogle" type="button" id="registerButton">
             <img class="login__buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
@@ -33,18 +33,16 @@ export const register = () => {
     </div>
   </main>
   `;
+
+  loginContainer.querySelector("#registro").addEventListener("click", () => {
+    const email = loginContainer.querySelector("#registerEmail").value;
+    const password = loginContainer.querySelector("#registerPassword").value;
+
+    console.log(email, password);
+
+    newRegister(email, password);
+  });
+
   loginContainer.appendChild(footer());
   return loginContainer;
 };
-
-const btnRegister = document.getElementById("registerButton");
-
-//const userName = document.getElementById("userName").value;
-
-/*btnRegister.addEventListener("click", () => {
-  const email = document.getElementById("registerEmail");
-  const password = document.getElementById("registerPassword");
-  registro(email.value, password.value);
-});
-
-//return btnRegister;*/
