@@ -41,10 +41,10 @@ const btnRegister = document.getElementById("registerButton");
 
 //const userName = document.getElementById("userName").value;
 
-btnRegister.addEventListener("click", () => {
+/*btnRegister.addEventListener("click", () => {
   const email = document.getElementById("registerEmail");
   const password = document.getElementById("registerPassword");
   registro(email.value, password.value);
 });
 
-//return btnRegister;
+//return btnRegister;*/

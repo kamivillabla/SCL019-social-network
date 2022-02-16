@@ -1,9 +1,9 @@
-import { footer } from '../component/footer.js';
+import { footer } from "../component/footer.js";
 
 export const login = () => {
   // Acá ira lo que desplegaremos.
-  const loginContainer = document.createElement('div');
-  loginContainer.classList.add('containerRoot__grid');
+  const loginContainer = document.createElement("div");
+  loginContainer.classList.add("containerRoot__grid");
   loginContainer.innerHTML = `
   <div class="login__logo login__gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
@@ -27,7 +27,7 @@ export const login = () => {
       </form>
 
     <div class="login__register">
-      <p>¿Aún no estas en alcohodemia? <a class="login__linkRegister" href="#/register">Registrate</a></p>
+      <p>¿Aún no tienes una cuenta? <a class="login__linkRegister" href="#/register">Registrate</a></p>
     </div>
   </main>
   `;
