@@ -1,18 +1,19 @@
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 /* Reseteo estilos button */
 
-button, input[type="submit"], input[type="reset"] {
-	background: none;
-	color: inherit;
-	border: none;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-  
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 input:focus {
   outline: none;
@@ -26,10 +27,10 @@ body {
 }
 
 /* Colores predefinidos */
-:root { 
-  --rosa--color: #FF857F;
-  --darkLigth--color: #1F1F23;
-  --darkLightTrans--color: #7D7D7D;
+:root {
+  --rosa--color: #ff857f;
+  --darkLigth--color: #1f1f23;
+  --darkLightTrans--color: #7d7d7d;
   --white--color: #eee;
   --dark--color: #000;
 }
@@ -37,13 +38,13 @@ body {
 /* Fuentes pre Definidas */
 
 :root {
-  --fonts-revalia: 'Revalia', cursive;
-  --fonts-yaldevi: 'Yaldevi', sans-serif;
+  --fonts-revalia: "Revalia", cursive;
+  --fonts-yaldevi: "Yaldevi", sans-serif;
 }
 
-a{ 
+a {
   text-decoration: none;
-  color: var(--dark--color)
+  color: var(--dark--color);
 }
 a:hover {
   color: var(--rosa--color);
@@ -72,18 +73,17 @@ p {
 /* Página Login movile */
 .containerRoot__grid {
   display: grid;
-   grid-template-areas: 
-        "logo"
-        "main"
-        "footer"; 
-        
+  grid-template-areas:
+    "logo"
+    "main"
+    "footer";
 }
 .login__logo {
   grid-area: logo;
 }
 .login__container {
   grid-area: main;
-  width: 100%
+  width: 100%;
 }
 .login__form {
   width: 95%;
@@ -123,7 +123,8 @@ p {
 .login__buttonGoogle__img {
   margin-right: 10px;
 }
-.login__buttonLogin, .login__buttonGoogle {
+.login__buttonLogin,
+.login__buttonGoogle {
   font-size: 1.2rem;
   border-radius: 30px;
   height: 2.5rem;
@@ -133,17 +134,16 @@ p {
   width: 1rem;
 }
 
-
 /* Pagina login Móviles en horizontal o tablets en vertical */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   .containerRoot__grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 90vh auto;
     align-items: center;
     justify-items: center;
-    grid-template-areas: 
-    "main   logo"
-    "footer footer";
+    grid-template-areas:
+      "main   logo"
+      "footer footer";
   }
   .login__container {
     width: 90%;
@@ -162,17 +162,18 @@ p {
   .login__logoImg {
     height: 80vh;
   }
- }
+}
 
 /* Footer */
 footer {
   grid-area: footer;
   text-align: center;
- padding-top: 2.5rem;
+  padding-top: 2.5rem;
   background-color: var(--darkLigth--color);
   height: 8rem;
 }
-footer p, footer a {
+footer p,
+footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
 }
