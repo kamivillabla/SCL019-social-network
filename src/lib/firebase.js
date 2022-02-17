@@ -6,6 +6,7 @@ import {
   signInWithPopup,
 }
   from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+import { app } from './config-firebase.js';
 
 const auth = getAuth();
 

@@ -9,7 +9,6 @@ export const register = () => {
   <div class="login__logo login__gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
   </div>
-
     <main class="login__container login__gridItem">
     <h1>BUENA MUCHACHA</h1>
       <form id="loginForm" class="login__form login__gridItem">
@@ -17,8 +16,8 @@ export const register = () => {
           <p>Ingresa tus datos</p>
         </div>
         <div class="login__container login__gridItem">
-          <input type="text" id="registerEmail" placeholder="Email" required />
-          <input type="text" id="userName" placeholder="Usuario" required/>
+          <input type="text" id="registerEmail" placeholder="Email"/>
+          <input type="text" id="userName" placeholder="Usuario"/>
           <input type="password" id="registerPassword" placeholder="Contraseña" required>
           <button id="registro" class="register__buttonLogin" type="submit">Registro</button>
           <p>o</p>
@@ -27,7 +26,6 @@ export const register = () => {
           </button>
         </div>
       </form>
-
     <div class="login__register">
       <p>¿Ya tienes una cuenta? <a class="login__linkRegister" href="#/register">Haz Login</a></p>
     </div>
