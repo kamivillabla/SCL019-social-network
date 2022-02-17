@@ -20,7 +20,7 @@ export const newRegister = (email, password) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      //display mensaje de error
+      // display mensaje de error
       // ..
       return errorCode + errorMessage;
     });
