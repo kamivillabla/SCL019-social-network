@@ -28,7 +28,7 @@ export const newRegister = (email, password) => {
 };
 
 //login google 
-export const logingoogle = () => {
+export const loginGoogle = () => {
 const provider = new GoogleAuthProvider();
 signInWithPopup(auth, provider)
 

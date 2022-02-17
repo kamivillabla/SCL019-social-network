@@ -1,5 +1,6 @@
 import { footer } from "../component/footer.js";
-import { newRegister } from "../lib/firebase.js";
+import { newRegister,loginGoogle} from "../lib/firebase.js";
+
 
 export const register = () => {
   // Acá ira lo que desplegaremos.
@@ -33,6 +34,10 @@ export const register = () => {
     </div>
   </main>
   `;
+  // Button Login google
+loginContainer.querySelector("#registerButton").addEventListener("click", () => {
+  loginGoogle()
+})
 
   // Button register
   loginContainer.querySelector("#registro").addEventListener("click", () => {
@@ -47,4 +52,7 @@ export const register = () => {
   loginContainer.appendChild(footer());
   return loginContainer;
 };
+
+  
+
 
