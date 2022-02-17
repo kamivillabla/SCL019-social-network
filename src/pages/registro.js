@@ -34,6 +34,7 @@ export const register = () => {
   </main>
   `;
 
+  // Button register
   loginContainer.querySelector("#registro").addEventListener("click", () => {
     const email = loginContainer.querySelector("#registerEmail").value;
     const password = loginContainer.querySelector("#registerPassword").value;
@@ -46,3 +47,4 @@ export const register = () => {
   loginContainer.appendChild(footer());
   return loginContainer;
 };
+

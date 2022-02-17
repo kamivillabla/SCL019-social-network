@@ -3,12 +3,13 @@ import { app } from "../lib/config-firebase.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
+ GoogleAuthProvider,
+ signInWithPopup} 
+from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
 
 const auth = getAuth();
 
 export const newRegister = (email, password) => {
-  // retornar esta funcion, hacer cambio de hash
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -25,3 +26,27 @@ export const newRegister = (email, password) => {
     });
   return createUserWithEmailAndPassword;
 };
+
+//login google 
+export const logingoogle = () => {
+const provider = new GoogleAuthProvider();
+signInWithPopup(auth, provider)
+
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+   });
+}
