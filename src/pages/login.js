@@ -1,5 +1,5 @@
 import { footer } from "../component/footer.js";
-import {loginGoogle,loginEmail} from "../lib/firebase.js";
+import { loginGoogle, loginEmail } from "../lib/firebase.js";
 
 export const login = () => {
   // Acá ira lo que desplegaremos.
@@ -35,22 +35,29 @@ export const login = () => {
   </main>
   `;
 
- // Button Login google
-  loginContainer.querySelector("#buttonGoogle").addEventListener("click", () => {
-  loginGoogle()
-})
-// ingreso login
-loginContainer.querySelector("#ingreso_login").addEventListener("click", () => {
-  const email = loginContainer.querySelector("#loginEmail").value;
-  const password = loginContainer.querySelector("#loginPassword").value;
-  loginEmail(email,password)
-});
+  // Button Login google
+  loginContainer
+    .querySelector("#buttonGoogle")
+    .addEventListener("click", () => {
+      loginGoogle();
+    });
+  // ingreso login
+  loginContainer
+    .querySelector("#ingreso_login")
+    .addEventListener("click", () => {
+      //Resetear display de mensajes de error a none
+      let inputEmail = document.getElementById("loginEmailInvalido");
+      inputEmail.style.display = "none";
 
-loginContainer.appendChild(footer())
+      let inputContraseña = document.getElementById("loginContrañaInvalida");
+      inputContraseña.style.display = "none";
+
+      //Obtener values de los inputs y aplicar la función de login
+      const email = loginContainer.querySelector("#loginEmail").value;
+      const password = loginContainer.querySelector("#loginPassword").value;
+      loginEmail(email, password);
+    });
+
+  loginContainer.appendChild(footer());
   return loginContainer;
 };
-
-
-
-
-

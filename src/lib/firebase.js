@@ -3,10 +3,10 @@ import { app } from "../lib/config-firebase.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
- GoogleAuthProvider,
- signInWithPopup,
- signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
 
 const auth = getAuth();
 
@@ -28,48 +28,51 @@ export const newRegister = (email, password) => {
   return createUserWithEmailAndPassword;
 };
 
-//login google 
+//login google
 export const loginGoogle = () => {
-const provider = new GoogleAuthProvider();
-signInWithPopup(auth, provider)
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+};
 
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-   });
-}
-
-export const loginEmail = (email,password) =>{
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-    alert ("ingresaste")
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    if (errorCode == "auth/wrong-password"){
-    const errorContraseña = document.getElementById("loginContrañaInvalida")
-    errorContraseña.style.display="block"
-    }
-    if (errorCode == "auth/user-not-found"){
-      const errorEmail = document.getElementById("loginEmailInvalido")
-      errorEmail.style.display="block"
-    }
-  });
-}
+export const loginEmail = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+      alert("ingresaste");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      if (errorCode == "auth/wrong-password") {
+        const errorContraseña = document.getElementById(
+          "loginContrañaInvalida"
+        );
+        errorContraseña.style.display = "block";
+      }
+      if (errorCode == "auth/user-not-found") {
+        const errorEmail = document.getElementById("loginEmailInvalido");
+        errorEmail.style.display = "block";
+      }
+    });
+};
