@@ -39,6 +39,7 @@ export const loginGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+      return user;
       // ...
     }).catch((error) => {
       // Handle Errors here.
@@ -48,6 +49,7 @@ export const loginGoogle = () => {
       const email = error.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+
       // ...
     });
 };
