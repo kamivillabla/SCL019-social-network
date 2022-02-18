@@ -1,5 +1,5 @@
 import { footer } from "../component/footer.js";
-import {loginGoogle} from "../lib/firebase.js";
+import {loginGoogle,loginEmail} from "../lib/firebase.js";
 
 export const login = () => {
   // Acá ira lo que desplegaremos.
@@ -19,7 +19,7 @@ export const login = () => {
         <div class="login__container login__gridItem">
           <input type="text" id="loginEmail" placeholder="Email"/>
           <input type="password" id="loginPassword" placeholder="Contraseña" required>
-          <button class="login__buttonLogin" type="submit" role="link">Login</button>
+          <button id="ingreso_login" class="login__buttonLogin" type="submit" role="link">Login</button>
           <p>o</p>
           <button class="login__buttonGoogle" type="button" id="buttonGoogle">
             <img class="login__buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
@@ -36,6 +36,18 @@ export const login = () => {
   loginContainer.querySelector("#buttonGoogle").addEventListener("click", () => {
   loginGoogle()
 })
-  loginContainer.appendChild(footer());
+// ingreso login
+loginContainer.querySelector("#ingreso_login").addEventListener("click", () => {
+  const email = loginContainer.querySelector("#loginEmail").value;
+  const password = loginContainer.querySelector("#loginPassword").value;
+  loginEmail(email,password)
+});
+
+  loginContainer.appendChild(footer)
   return loginContainer;
 };
+
+
+
+
+
