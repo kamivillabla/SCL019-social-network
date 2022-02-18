@@ -16,8 +16,10 @@ export const login = () => {
           <p>Ingresa tus datos</p>
         </div>
         <div class="login__container login__gridItem">
-          <input type="text" id="loginEmail" placeholder="Email"/>
+          <input type="text" id="loginEmail" placeholder="Email" required>
+          <spam class="login_displayNone" id="loginEmailInvalido">Correo inválido</spam>
           <input type="password" id="loginPassword" placeholder="Contraseña" required>
+          <spam class="login_displayNone" id="loginContrañaInvalida">Contraseña inválida</spam>
           <button id="ingreso_login" class="login__buttonLogin" type="submit" role="link">Login</button>
           <p>o</p>
           <button class="login__buttonGoogle" type="button" id="buttonGoogle">
@@ -30,6 +32,7 @@ export const login = () => {
     </div>
   </main>
   `;
+
   // Button Login google
   loginContainer.querySelector('#buttonGoogle').addEventListener('click', () => {
     loginGoogle();
