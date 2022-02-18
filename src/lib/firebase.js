@@ -63,6 +63,13 @@ signInWithEmailAndPassword(auth, email, password)
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    alert ("no ingresa")
+    if (errorCode == "auth/wrong-password"){
+    const errorContraseña = document.getElementById("loginContrañaInvalida")
+    errorContraseña.style.display="block"
+    }
+    if (errorCode == "auth/user-not-found"){
+      const errorEmail = document.getElementById("loginEmailInvalido")
+      errorEmail.style.display="block"
+    }
   });
 }

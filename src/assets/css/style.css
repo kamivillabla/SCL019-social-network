@@ -106,7 +106,10 @@ p {
   text-align: center;
   gap: 1.3rem;
 }
-
+.login_displayNone{
+  display: none;
+  color:rgb(139, 2, 2)
+}
 .login__linkRegister {
   color: var(--rosa--color);
 }
