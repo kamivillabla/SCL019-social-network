@@ -43,7 +43,7 @@ loginContainer.querySelector("#ingreso_login").addEventListener("click", () => {
   loginEmail(email,password)
 });
 
-  loginContainer.appendChild(footer)
+loginContainer.appendChild(footer())
   return loginContainer;
 };
 
