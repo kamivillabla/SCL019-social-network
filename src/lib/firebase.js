@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
 import {
   getAuth,
@@ -8,6 +7,7 @@ import {
   signInWithEmailAndPassword,
 }
   from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+import { app } from './config-firebase.js';
 
 const auth = getAuth();
 
@@ -59,9 +59,11 @@ export const loginEmail = (email, password) => {
       // Signed in
       const user = userCredential.user;
       // ...
+      alert('ingresaste');
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      alert('no ingresa');
     });
 };
