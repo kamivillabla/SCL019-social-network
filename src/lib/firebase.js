@@ -58,9 +58,11 @@ signInWithEmailAndPassword(auth, email, password)
     // Signed in
     const user = userCredential.user;
     // ...
+    alert ("ingresaste")
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    alert ("no ingresa")
   });
 }
