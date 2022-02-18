@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
 import {
   getAuth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithEmailAndPassword,
 }
   from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
-import { app } from './config-firebase.js';
 
 const auth = getAuth();
 
@@ -39,7 +40,6 @@ export const loginGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      return user;
       // ...
     }).catch((error) => {
       // Handle Errors here.
@@ -49,7 +49,19 @@ export const loginGoogle = () => {
       const email = error.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-
       // ...
+    });
+};
+
+export const loginEmail = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
     });
 };
