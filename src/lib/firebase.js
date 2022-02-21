@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  sendEmailVerification,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
 import { app } from './config-firebase.js';
 
@@ -20,7 +21,14 @@ export const newRegister = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      // LLamamos a la función verificar email
+      // eslint-disable-next-line no-use-before-define
+      verificar();
+      alert(
+        'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada.',
+      );
       window.location.hash = '#/login';
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -31,9 +39,7 @@ export const newRegister = (email, password) => {
       // return errorCode + errorMessage;
       // Mensaje correo en uso
       if (errorCode == 'auth/email-already-in-use') {
-        const emailInUse = document.getElementById(
-          'registerEmailInUse',
-        );
+        const emailInUse = document.getElementById('registerEmailInUse');
         emailInUse.style.display = 'block';
       }
       // Mensaje contraseña demasiado debil (Menos de 6 caracteres)
@@ -96,4 +102,13 @@ export const loginEmail = (email, password) => {
         errorEmail.style.display = 'block';
       }
     });
+};
+
+// Verificar email
+const verificar = () => {
+  sendEmailVerification(auth.currentUser).then(() => {
+    console.log('Mail enviado');
+    // Email verification sent!
+    // ...
+  });
 };
