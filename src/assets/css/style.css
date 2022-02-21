@@ -69,9 +69,7 @@ p {
   font-family: var(--fonts-yaldevi);
   font-size: 1.3rem;
 }
-spam {
-  font-size: 1.2rem;
-}
+
 
 /* Página Login movile */
 .containerRoot__grid {
@@ -95,7 +93,7 @@ spam {
   border: 2px solid var(--rosa--color);
   border-radius: 30px;
   width: 100%;
-  height: 2.6rem;
+  height: 2.5rem;
 }
 
 .login__logoImg {
@@ -111,13 +109,15 @@ spam {
 }
 .login_displayNone{
   display: none;
-  color:rgb(139, 2, 2)
+  color:rgb(224, 69, 69);
+  font-weight: bold;
+  font-size: 1rem;
 }
 .login__linkRegister {
   color: var(--rosa--color);
 }
 
-.login__buttonLogin, .register__buttonLogin {
+.login__buttonLogin {
   width: 50%;
   background-color: var(--rosa--color);
 }
@@ -130,8 +130,7 @@ spam {
   margin-right: 10px;
 }
 .login__buttonLogin,
-.login__buttonGoogle,
-.register__buttonLogin {
+.login__buttonGoogle {
   font-size: 1.2rem;
   border-radius: 30px;
   height: 2.5rem;
