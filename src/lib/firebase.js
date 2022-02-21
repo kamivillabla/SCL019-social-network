@@ -9,18 +9,19 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   sendEmailVerification,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
 import { app } from "./config-firebase.js";
 
 const auth = getAuth();
 
-// Crear nueva cuenta
-
-export const newRegister = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
+//Crear nueva cuenta
+export const newRegister = (email, password, userName) => {
+  createUserWithEmailAndPassword(auth, email, password, userName)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      user.displayName = userName;
       verificar();
       alert(
         "Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada."
@@ -49,7 +50,7 @@ export const newRegister = (email, password) => {
   return createUserWithEmailAndPassword;
 };
 
-// login google
+//Login google
 export const loginGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
@@ -74,7 +75,7 @@ export const loginGoogle = () => {
     });
 };
 
-// login con email y contraseña
+//Login con email y contraseña
 export const loginEmail = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -102,6 +103,7 @@ export const loginEmail = (email, password) => {
     });
 };
 
+//Función que envía un correo de verificación al registrarse con email y contraseña.
 const verificar = () => {
   sendEmailVerification(auth.currentUser).then(() => {
     console.log("Mail enviado");
@@ -109,3 +111,21 @@ const verificar = () => {
     // ...
   });
 };
+
+//Aquí aprendimos que el usuario es un objeto. Trabajo en proceso.
+export const observador = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      const userName = user.displayName;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+};
+observador();
