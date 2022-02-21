@@ -1,5 +1,6 @@
 import { login } from '../pages/login.js';
 import { register } from '../pages/registro.js';
+import { home } from '../pages/home.js';
 
 export const routes = (hash) => {
   const containerRoot = document.getElementById('root');
@@ -14,8 +15,12 @@ export const routes = (hash) => {
       containerRoot.appendChild(register());
       break;
 
-    // En caso que ningún URL funcione o no tenga nada, nos redigire a la página de error 404
+    case '#/home':
+      containerRoot.appendChild(home());
+      break;
+
+    // En caso que el url no sea correcto, nos redigire a la página de "No esta disponible".
     default:
-      containerRoot.innerHTML = 'ERROR';
+      containerRoot.innerHTML = 'Esta página no esta disponible';
   }
 };
