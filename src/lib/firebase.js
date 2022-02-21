@@ -21,7 +21,6 @@ export const newRegister = (email, password) => {
       // Signed in
       const user = userCredential.user;
       window.location.hash = '#/login';
-      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
