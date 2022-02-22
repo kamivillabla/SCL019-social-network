@@ -38,11 +38,11 @@ export const register = () => {
     });
 
   // Button register
-  registerContainer.querySelector("#registro").addEventListener("click", (e) => {
+  registerContainer.querySelector('#registro').addEventListener('click', (e) => {
     e.preventDefault();
-    const email = registerContainer.querySelector("#registerEmail").value;
-    const password = registerContainer.querySelector("#registerPassword").value;
-    const userName = registerContainer.querySelector("#userName").value;
+    const email = registerContainer.querySelector('#registerEmail').value;
+    const password = registerContainer.querySelector('#registerPassword').value;
+    const userName = registerContainer.querySelector('#userName').value;
 
     newRegister(email, password, userName);
   });

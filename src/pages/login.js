@@ -38,7 +38,8 @@ export const login = () => {
   // ingreso login
   loginContainer
     .querySelector('#ingreso_login')
-    .addEventListener('click', () => {
+    .addEventListener('click', (e) => {
+      e.preventDefault();
       // Resetear display de mensajes de error a none
       const inputEmail = document.getElementById('loginEmailInvalido');
       inputEmail.style.display = 'none';
