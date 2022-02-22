@@ -117,7 +117,7 @@ p {
   color: var(--rosa--color);
 }
 
-.login__buttonLogin {
+.login__buttonLogin, .register__buttonLogin {
   width: 50%;
   background-color: var(--rosa--color);
 }
@@ -129,6 +129,8 @@ p {
 .login__buttonGoogle__img {
   margin-right: 10px;
 }
+
+.register__buttonLogin, 
 .login__buttonLogin,
 .login__buttonGoogle {
   font-size: 1.2rem;
