@@ -22,6 +22,7 @@ export const newRegister = (email, password, userName) => {
       // Signed in
       const user = userCredential.user;
       user.displayName = userName;
+      console.log ("hola")
       verificar();
       alert(
         "Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada."
