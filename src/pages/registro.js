@@ -13,7 +13,7 @@ export const register = () => {
     <h1>BUENA MUCHACHA</h1>
       <form id="loginForm" class="login__form login__gridItem">
         <p>Ingresa tus datos</p>
-        <input type="text" id="registerEmail" placeholder="Email"/>
+        <input type="text" id="registerEmail" placeholder="Email" required/>
         <spam class="login_displayNone" id="registerEmailInUse">Correo en uso</spam>
         <input type="text" id="userName" placeholder="Usuario"/>
         <input type="password" id="registerPassword" placeholder="Contraseña" required>
