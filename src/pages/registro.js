@@ -1,10 +1,10 @@
-import { footer } from "../component/footer.js";
-import { newRegister, loginGoogle } from "../lib/firebase.js";
+import { footer } from '../component/footer.js';
+import { newRegister, loginGoogle } from '../lib/firebase.js';
 
 export const register = () => {
   // Acá ira lo que desplegaremos.
-  const registerContainer = document.createElement("div");
-  registerContainer.classList.add("containerRoot__grid");
+  const registerContainer = document.createElement('div');
+  registerContainer.classList.add('containerRoot__grid');
   registerContainer.innerHTML = `
   <div class="login__logo login__gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
@@ -32,8 +32,8 @@ export const register = () => {
 
   // Button Login google
   registerContainer
-    .querySelector("#registerButton")
-    .addEventListener("click", () => {
+    .querySelector('#registerButton')
+    .addEventListener('click', () => {
       loginGoogle();
     });
 

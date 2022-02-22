@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-unreachable */
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
@@ -10,12 +12,12 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
-import { app } from "./config-firebase.js";
+} from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+import { app } from './config-firebase.js';
 
 const auth = getAuth();
 
-//Crear nueva cuenta
+// Crear nueva cuenta
 export const newRegister = (email, password, userName) => {
   createUserWithEmailAndPassword(auth, email, password, userName)
     .then((userCredential) => {
@@ -25,9 +27,9 @@ export const newRegister = (email, password, userName) => {
       console.log ("hola")
       verificar();
       alert(
-        "Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada."
+        'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada.',
       );
-      window.location.hash = "#/login";
+      window.location.hash = '#/login';
       return user;
     })
     .catch((error) => {
@@ -38,20 +40,20 @@ export const newRegister = (email, password, userName) => {
       console.log(errorCode);
       // return errorCode + errorMessage;
       // Mensaje correo en uso
-      if (errorCode == "auth/email-already-in-use") {
-        const emailInUse = document.getElementById("registerEmailInUse");
-        emailInUse.style.display = "block";
+      if (errorCode == 'auth/email-already-in-use') {
+        const emailInUse = document.getElementById('registerEmailInUse');
+        emailInUse.style.display = 'block';
       }
       // Mensaje contraseña demasiado debil (Menos de 6 caracteres)
-      if (errorCode == "auth/weak-password") {
-        const weakPassword = document.getElementById("registerWeakPassword");
-        weakPassword.style.display = "block";
+      if (errorCode == 'auth/weak-password') {
+        const weakPassword = document.getElementById('registerWeakPassword');
+        weakPassword.style.display = 'block';
       }
     });
   return createUserWithEmailAndPassword;
 };
 
-//Login google
+// Login google
 export const loginGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
@@ -62,7 +64,7 @@ export const loginGoogle = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      window.location.hash = "#/home";
+      window.location.hash = '#/home';
     })
     .catch((error) => {
       // Handle Errors here.
@@ -76,44 +78,44 @@ export const loginGoogle = () => {
     });
 };
 
-//Login con email y contraseña
+// Login con email y contraseña
 export const loginEmail = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       // ...
-      alert("ingresaste");
+      alert('ingresaste');
       // LLeva al home
-      window.location.hash = "#/home";
+      window.location.hash = '#/home';
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode + errorMessage);
-      if (errorCode == "auth/wrong-password") {
+      if (errorCode == 'auth/wrong-password') {
         const errorContraseña = document.getElementById(
-          "loginContrañaInvalida"
+          'loginContrañaInvalida',
         );
-        errorContraseña.style.display = "block";
+        errorContraseña.style.display = 'block';
       }
-      if (errorCode == "auth/user-not-found") {
-        const errorEmail = document.getElementById("loginEmailInvalido");
-        errorEmail.style.display = "block";
+      if (errorCode == 'auth/user-not-found') {
+        const errorEmail = document.getElementById('loginEmailInvalido');
+        errorEmail.style.display = 'block';
       }
     });
 };
 
-//Función que envía un correo de verificación al registrarse con email y contraseña.
+// Función que envía un correo de verificación al registrarse con email y contraseña.
 const verificar = () => {
   sendEmailVerification(auth.currentUser).then(() => {
-    console.log("Mail enviado");
+    console.log('Mail enviado');
     // Email verification sent!
     // ...
   });
 };
 
-//Aquí aprendimos que el usuario es un objeto. Trabajo en proceso.
+// Aquí aprendimos que el usuario es un objeto. Trabajo en proceso.
 export const observador = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
