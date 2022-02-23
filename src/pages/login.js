@@ -26,7 +26,7 @@ export const login = () => {
         </button>
       </form>
       <div class="login__register">
-        <p>¿Aún no tienes una cuenta? <a class="login__linkRegister" href="#/registro">Registrate</a></p>
+        <p>¿Aún no tienes una cuenta? <a class="login__linkRegister" href="#/registro">Regístrate</a></p>
       </div>
   </main>
   `;
@@ -42,12 +42,6 @@ export const login = () => {
     .querySelector('#ingreso_login')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      // Resetear display de mensajes de error a none
-      const inputEmail = document.getElementById('loginEmailInvalido');
-      inputEmail.style.display = 'none';
-
-      const inputContraseña = document.getElementById('loginContrañaInvalida');
-      inputContraseña.style.display = 'none';
 
       // Obtener values de los inputs y aplicar la función de login
       const email = loginContainer.querySelector('#loginEmail').value;

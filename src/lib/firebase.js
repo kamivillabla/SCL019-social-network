@@ -27,7 +27,7 @@ export const newRegister = (email, password, userName) => {
       console.log('hola');
       verificar();
       alert(
-        'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada.',
+        'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada o spam.',
       );
       window.location.hash = '#/login';
       return user;
