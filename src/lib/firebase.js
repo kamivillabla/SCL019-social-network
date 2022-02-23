@@ -24,7 +24,7 @@ export const newRegister = (email, password, userName) => {
       // Signed in
       const user = userCredential.user;
       user.displayName = userName;
-      console.log ("hola")
+      console.log('hola');
       verificar();
       alert(
         'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada.',
@@ -37,17 +37,33 @@ export const newRegister = (email, password, userName) => {
       const errorMessage = error.message;
       // display mensaje de error
       // ..
-      console.log(errorCode);
+      console.log(errorCode + errorMessage);
       // return errorCode + errorMessage;
+      // Llamada constantes
+      const missingEmail = document.getElementById('missinEmail');
+      const emailInUse = document.getElementById('registerEmailInUse');
+      const weakPassword = document.getElementById('registerWeakPassword');
+      const missingPassword = document.getElementById('missinPassword');
+
+      // Error campo correo vacio:
+      if (errorCode == 'auth/missing-email') {
+        missingEmail.style.display = 'block';
+        emailInUse.style.display = 'none';
+      }
       // Mensaje correo en uso
       if (errorCode == 'auth/email-already-in-use') {
-        const emailInUse = document.getElementById('registerEmailInUse');
         emailInUse.style.display = 'block';
+        missingEmail.style.display = 'none';
       }
       // Mensaje contraseña demasiado debil (Menos de 6 caracteres)
       if (errorCode == 'auth/weak-password') {
-        const weakPassword = document.getElementById('registerWeakPassword');
         weakPassword.style.display = 'block';
+        missingPassword.style.display = 'none';
+      }
+      // Error campo de contraseña vacio
+      if (errorCode == 'auth/internal-error') {
+        missingPassword.style.display = 'block';
+        weakPassword.style.display = 'none';
       }
     });
   return createUserWithEmailAndPassword;
@@ -93,15 +109,31 @@ export const loginEmail = (email, password) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode + errorMessage);
+
+      // Constantes
+      const errorContraseña = document.getElementById('loginContrañaInvalida');
+      const loginNulo = document.getElementById('loginEmailNull');
+      const errorEmail = document.getElementById('loginEmailInvalido');
+      const passwordNull = document.getElementById('loginContraseñaVacia');
+      // Contraseña incorrecta
       if (errorCode == 'auth/wrong-password') {
-        const errorContraseña = document.getElementById(
-          'loginContrañaInvalida',
-        );
         errorContraseña.style.display = 'block';
+        passwordNull.style.display = 'none';
       }
+      // Ingresar correo valido
+      if (errorCode == 'auth/invalid-email') {
+        loginNulo.style.display = 'block';
+        errorEmail.style.display = 'none';
+      }
+      // Email invalido
       if (errorCode == 'auth/user-not-found') {
-        const errorEmail = document.getElementById('loginEmailInvalido');
         errorEmail.style.display = 'block';
+        loginNulo.style.display = 'none';
+      }
+      // Campo contraseña vacio:
+      if (errorCode == 'auth/internal-error') {
+        passwordNull.style.display = 'block';
+        errorContraseña.style.display = 'none';
       }
     });
 };

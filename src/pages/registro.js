@@ -13,11 +13,13 @@ export const register = () => {
     <h1>BUENA MUCHACHA</h1>
       <form id="loginForm" class="login__form login__gridItem">
         <p>Ingresa tus datos</p>
-        <input type="text" id="registerEmail" placeholder="Email" required/>
-        <spam class="login_displayNone" id="registerEmailInUse">Correo en uso</spam>
-        <input type="text" id="userName" placeholder="Usuario"/>
+        <input type="text" id="registerEmail" placeholder="Email" required>
+        <spam class="login_displayNone" id="registerEmailInUse">Este email ya se encuentra en uso</spam>
+        <spam class="login_displayNone" id="missinEmail">Ingresa un email valido</spam>
+        <input type="text" id="userName" placeholder="Usuario">
         <input type="password" id="registerPassword" placeholder="Contraseña" required>
         <spam class="login_displayNone" id="registerWeakPassword">La contraseña debe tener al menos 6 caracteres</spam>
+        <spam class="login_displayNone" id="missinPassword">Ingresa una contraseña</spam>
         <button id="registro" class="register__buttonLogin" type="submit">Registro</button>
         <p>o</p>
         <button class="login__buttonGoogle" type="button" id="registerButton">

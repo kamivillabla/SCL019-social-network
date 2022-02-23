@@ -14,9 +14,11 @@ export const login = () => {
       <form id="loginForm" class="login__form login__gridItem">
         <p>Ingresa tus datos</p>
         <input type="text" id="loginEmail" placeholder="Email" required>
-        <spam class="login_displayNone" id="loginEmailInvalido">Correo inválido</spam>
+        <spam class="login_displayNone" id="loginEmailInvalido">Este email no esta registrado</spam>
+        <spam class="login_displayNone" id="loginEmailNull">Ingrese un email valido</spam>
         <input type="password" id="loginPassword" placeholder="Contraseña" required>
         <spam class="login_displayNone" id="loginContrañaInvalida">Contraseña inválida</spam>
+        <spam class="login_displayNone" id="loginContraseñaVacia">Ingresa una contraseña</spam>
         <button id="ingreso_login" class="login__buttonLogin" type="submit" role="link">Login</button>
         <p>o</p>
         <button class="login__buttonGoogle" type="button" id="buttonGoogle">
