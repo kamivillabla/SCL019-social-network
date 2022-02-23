@@ -124,7 +124,15 @@ p {
   background-color: var(--rosa--color);
 }
 .login__buttonLogin:hover {
-  background-color: #ff857fb6;
+  background-color: transparent;
+  color: var(--rosa--color);
+  border: 1px solid var(--rosa--color)
+}
+
+.register__buttonLogin:hover {
+  background-color: transparent;
+  color: var(--rosa--color);
+  border: 1px solid var(--rosa--color);
 }
 .login__buttonGoogle {
   width: 87%;
