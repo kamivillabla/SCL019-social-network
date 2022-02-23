@@ -172,6 +172,7 @@ p {
   }
   .login__container {
     width: 90%;
+    margin-top: 16rem;
   }
   .login__logoImg {
     width: 100%;
@@ -210,7 +211,7 @@ footer a {
 
 @media (min-width: 768px) {
   footer {
-    margin-top: 6rem;
+    margin-top: 16rem;
   }
 }
 @media (min-width: 1024px) {

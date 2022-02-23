@@ -41,6 +41,7 @@ export const newRegister = (email, password, userName) => {
       // return errorCode + errorMessage;
       // Llamada constantes
       const missingEmail = document.getElementById('missinEmail');
+      const loginNulo = document.getElementById('loginEmailNull');
       const emailInUse = document.getElementById('registerEmailInUse');
       const weakPassword = document.getElementById('registerWeakPassword');
       const missingPassword = document.getElementById('missinPassword');
@@ -49,11 +50,18 @@ export const newRegister = (email, password, userName) => {
       if (errorCode == 'auth/missing-email') {
         missingEmail.style.display = 'block';
         emailInUse.style.display = 'none';
+        loginNulo.style.display = 'none';
+      }
+      if (errorCode == 'auth/invalid-email') {
+        loginNulo.style.display = 'block';
+        missingEmail.style.display = 'none';
+        emailInUse.style.display = 'none';
       }
       // Mensaje correo en uso
       if (errorCode == 'auth/email-already-in-use') {
         emailInUse.style.display = 'block';
         missingEmail.style.display = 'none';
+        loginNulo.style.display = 'none';
       }
       // Mensaje contraseña demasiado debil (Menos de 6 caracteres)
       if (errorCode == 'auth/weak-password') {

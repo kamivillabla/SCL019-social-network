@@ -15,7 +15,8 @@ export const register = () => {
         <p>Ingresa tus datos</p>
         <input type="text" id="registerEmail" placeholder="Correo Electrónico" required>
         <spam class="login_displayNone" id="registerEmailInUse">Este correo ya se encuentra en uso</spam>
-        <spam class="login_displayNone" id="missinEmail">Ingresa un correo válido</spam>
+        <spam class="login_displayNone" id="missinEmail">Ingresa un correo</spam>
+        <spam class="login_displayNone" id="loginEmailNull">Este correo no es válido</spam>
         <input type="text" id="userName" placeholder="Usuario">
         <input type="password" id="registerPassword" placeholder="Contraseña" required>
         <spam class="login_displayNone" id="registerWeakPassword">La contraseña debe tener al menos 6 caracteres</spam>
