@@ -147,6 +147,9 @@ p {
 .login__buttonGoogle__img {
   width: 1rem;
 }
+.login__register {
+  max-width: 90%;
+}
 
 /* Pagina login Móviles en horizontal o tablets en vertical */
 @media (min-width: 768px) {
@@ -187,9 +190,23 @@ footer {
   height: 8rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  
 }
 footer p,
 footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
+}
+
+/* Footer tamaño tablet */
+
+@media (min-width: 768px) {
+  footer {
+    margin-top: 6rem;
+  }
+}
+@media (min-width: 1024px) {
+  footer {
+    margin-top: 0rem;
+  }
 }
