@@ -163,7 +163,7 @@ p {
 @media (min-width: 768px) {
   .containerRoot__grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 90vh auto;
+    grid-template-rows: 90% auto;
     align-items: center;
     justify-items: center;
     grid-template-areas:
@@ -172,7 +172,6 @@ p {
   }
   .login__container {
     width: 90%;
-    margin-top: 16rem;
   }
   .login__logoImg {
     width: 100%;
@@ -205,17 +204,4 @@ footer p,
 footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
-}
-
-/* Footer tamaño tablet */
-
-@media (min-width: 768px) {
-  footer {
-    margin-top: 16rem;
-  }
-}
-@media (min-width: 1024px) {
-  footer {
-    margin-top: 0rem;
-  }
 }
