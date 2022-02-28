@@ -13,10 +13,10 @@ export const login = () => {
     <h1>BUENA MUCHACHA</h1>
       <form id="loginForm" class=" form  gridItem">
         <p>Ingresa tus datos</p>
-        <input type="text" id="loginEmail" placeholder="Correo Electrónico" required>
+        <input class="inputNames" type="text" id="loginEmail" placeholder="Correo Electrónico" required>
         <spam class="displayNone" id="loginEmailInvalido">Este correo no está registrado</spam>
         <spam class="displayNone" id="loginEmailNull">Ingrese un correo válido</spam>
-        <input type="password" id="loginPassword" placeholder="Contraseña" required>
+        <input class="inputNames" type="password" id="loginPassword" placeholder="Contraseña" required>
         <spam class="displayNone" id="loginContrañaInvalida">Contraseña inválida</spam>
         <spam class="displayNone" id="loginContraseñaVacia">Ingresa una contraseña</spam>
         <button id="ingreso_login" class=" buttonLogin" type="submit" role="link">Iniciar Sesión</button>
@@ -48,7 +48,6 @@ export const login = () => {
       const password = loginContainer.querySelector('#loginPassword').value;
       loginEmail(email, password);
     });
-
   loginContainer.appendChild(footer());
   return loginContainer;
 };

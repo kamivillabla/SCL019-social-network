@@ -189,6 +189,14 @@ p {
   }
 }
 
+/* Pagina home */
+.iconsColor {
+font-size: 1rem;
+color: var(--rosa--color);
+}
+
+
+
 /* Footer */
 footer {
   grid-area: footer;
