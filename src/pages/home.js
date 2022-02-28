@@ -7,6 +7,12 @@ export const home = () => {
     <i class="fa-solid fa-magnifying-glass iconsColor"></i>
     <i class="fa-solid fa-pen-to-square iconsColor"></i>
     <i class="fa-solid fa-door-open iconsColor" id="cerrarSesion"></i>
+
+    <div> 
+    <input placeholder="¿Qué quieres contarnos?">
+    <input placeholder="Etiquetas">
+    <button>Publicar</button> 
+    </div>
   `;
 
   homeContainer.querySelector("#cerrarSesion").addEventListener("click", () => {
