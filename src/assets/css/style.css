@@ -162,16 +162,16 @@ p {
 /* Pagina login Móviles en horizontal o tablets en vertical */
 @media (min-width: 768px) {
   .containerRoot__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40% 1fr;
     grid-template-rows: 90% auto;
     align-items: center;
     justify-items: center;
     grid-template-areas:
-      "main   logo"
+      "logo   main"
       "footer footer";
   }
   .login__container {
-    width: 90%;
+    width: 80%;
   }
   .login__logoImg {
     width: 100%;
