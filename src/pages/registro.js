@@ -6,29 +6,29 @@ export const register = () => {
   const registerContainer = document.createElement('div');
   registerContainer.classList.add('containerRoot__grid');
   registerContainer.innerHTML = `
-  <div class="login__logo login__gridItem">
-      <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
+  <div class="logo gridItem">
+      <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="logoImg">
   </div>
-    <main class="login__container login__gridItem">
+    <main class="container gridItem">
     <h1>BUENA MUCHACHA</h1>
-      <form id="loginForm" class="login__form login__gridItem">
+      <form id="loginForm" class="form gridItem">
         <p>Ingresa tus datos</p>
         <input type="text" id="registerEmail" placeholder="Correo Electrónico" required>
-        <spam class="login_displayNone" id="registerEmailInUse">Este correo ya se encuentra en uso</spam>
-        <spam class="login_displayNone" id="missinEmail">Ingresa un correo</spam>
-        <spam class="login_displayNone" id="loginEmailNull">Este correo no es válido</spam>
+        <spam class="displayNone" id="registerEmailInUse">Este correo ya se encuentra en uso</spam>
+        <spam class="displayNone" id="missinEmail">Ingresa un correo</spam>
+        <spam class="displayNone" id="loginEmailNull">Este correo no es válido</spam>
         <input type="text" id="userName" placeholder="Usuario">
         <input type="password" id="registerPassword" placeholder="Contraseña" required>
-        <spam class="login_displayNone" id="registerWeakPassword">La contraseña debe tener al menos 6 caracteres</spam>
-        <spam class="login_displayNone" id="missinPassword">Ingresa una contraseña</spam>
+        <spam class="displayNone" id="registerWeakPassword">La contraseña debe tener al menos 6 caracteres</spam>
+        <spam class="displayNone" id="missinPassword">Ingresa una contraseña</spam>
         <button id="registro" class="register__buttonLogin" type="submit">Registro</button>
         <p>o</p>
-        <button class="login__buttonGoogle" type="button" id="registerButton">
-        <img class="login__buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
+        <button class="buttonGoogle" type="button" id="registerButton">
+        <img class="buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
         </button>
       </form>
-      <div class="login__register">
-        <p>¿Ya tienes una cuenta? <a class="login__linkRegister" href="#/login">Inicia sesión</a></p>
+      <div class="register">
+        <p>¿Ya tienes una cuenta? <a class="linkRegister" href="#/login">Inicia sesión</a></p>
       </div>
   </main>
   `;
