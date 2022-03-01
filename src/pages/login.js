@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { footer } from '../component/footer.js';
 import { loginGoogle, loginEmail } from '../lib/firebase.js';
 
