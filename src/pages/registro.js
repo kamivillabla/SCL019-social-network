@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { footer } from '../component/footer.js';
 import { newRegister, loginGoogle } from '../lib/firebase.js';
 
@@ -13,11 +14,17 @@ export const register = () => {
     <h1>BUENA MUCHACHA</h1>
       <form id="loginForm" class="form gridItem">
         <p>Ingresa tus datos</p>
+        
+        <input type="text" id="userName" placeholder="Nombre de Usuarie">
+        <spam class="displayNone" id="invalidUserName">Nombre de usuarie no disponible</spam>
+        <spam class="displayNone" id="emptyUserName">Ingresa un nombre de usuarie</spam>
+        <input type="date" id="age" placeholder="Fecha de nacimiento" required>
+        <spam class="displayNone" id="invalidAge">Lo siento, estás muy chiquite</spam>
+        <spam class="displayNone" id="emptyAge">Ingresa tu fecha de nacimiento</spam>
         <input type="text" id="registerEmail" placeholder="Correo Electrónico" required>
         <spam class="displayNone" id="registerEmailInUse">Este correo ya se encuentra en uso</spam>
         <spam class="displayNone" id="missinEmail">Ingresa un correo</spam>
         <spam class="displayNone" id="loginEmailNull">Este correo no es válido</spam>
-        <input type="text" id="userName" placeholder="Usuario">
         <input type="password" id="registerPassword" placeholder="Contraseña" required>
         <spam class="displayNone" id="registerWeakPassword">La contraseña debe tener al menos 6 caracteres</spam>
         <spam class="displayNone" id="missinPassword">Ingresa una contraseña</spam>
@@ -41,14 +48,16 @@ export const register = () => {
     });
 
   // Button register
-  registerContainer.querySelector('#registro').addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = registerContainer.querySelector('#registerEmail').value;
-    const password = registerContainer.querySelector('#registerPassword').value;
-    const userName = registerContainer.querySelector('#userName').value;
+  registerContainer
+    .querySelector('#registro')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = registerContainer.querySelector('#registerEmail').value;
+      const password = registerContainer.querySelector('#registerPassword').value;
+      const userName = registerContainer.querySelector('#userName').value;
 
-    newRegister(email, password, userName);
-  });
+      newRegister(email, password, userName);
+    });
 
   registerContainer.appendChild(footer());
   return registerContainer;

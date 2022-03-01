@@ -16,10 +16,32 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+} from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
+
 import { app } from './config-firebase.js';
 import { routes } from './routes.js';
 
 const auth = getAuth();
+const db = getFirestore();
+
+// Creando colección de datos (noticia en proceso)
+
+const userData = async (userId, userName) => {
+  try {
+    const docRef = await addDoc(collection(db, 'users'), {
+      id: userId,
+      name: userName,
+    });
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
 
 // Crear nueva cuenta
 export const newRegister = (email, password, userName) => {
@@ -27,7 +49,7 @@ export const newRegister = (email, password, userName) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      user.displayName = userName;
+      userData(auth.currentUser.uid, userName);
       console.log('hola');
       verificar();
       alert(
