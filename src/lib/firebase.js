@@ -42,6 +42,20 @@ const userData = async (userId, userName, age) => {
     console.error("Error adding document: ", e);
   }
 };
+//coleccion leer datos para despues publicar
+export const publicar = async (userId,userName,descripcion,etiquetas) => {
+  try {
+    const docRef = await addDoc(collection(db, "post"), {
+      id: userId,
+      name: userName,
+      descripcion: descripcion,
+      etiquetas: etiquetas
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
 
 // Crear nueva cuenta
 export const newRegister = (email, password, userName, age) => {
