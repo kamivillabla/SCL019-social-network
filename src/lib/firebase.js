@@ -31,11 +31,12 @@ const db = getFirestore();
 
 // Creando colección de datos (noticia en proceso)
 
-const userData = async (userId, userName) => {
+const userData = async (userId, userName, age) => {
   try {
     const docRef = await addDoc(collection(db, 'users'), {
       id: userId,
       name: userName,
+      age,
     });
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
@@ -44,12 +45,12 @@ const userData = async (userId, userName) => {
 };
 
 // Crear nueva cuenta
-export const newRegister = (email, password, userName) => {
+export const newRegister = (email, password, userName, age) => {
   createUserWithEmailAndPassword(auth, email, password, userName)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      userData(auth.currentUser.uid, userName);
+      userData(auth.currentUser.uid, userName, age);
       console.log('hola');
       verificar();
       alert(
