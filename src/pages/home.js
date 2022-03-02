@@ -30,8 +30,43 @@ export const home = () => {
         <h3 class="nombreUsuarie">Nombre Usuarie</h3>
         <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
         <hr>
-        <i class="fa-solid fa-heart"></i>
-        <i class="fa-solid fa-comment"></i>
+        <div class="likeAndComment">
+          <span>5</span>
+          <i class="fa-solid fa-heart"></i><span>7</span>
+          <i class="fa-solid fa-comment"></i>
+        </div>
+      </div>
+    </div>
+     <!-- Publicaciones -->
+     <div class="home__publicaciones">
+      <div class="containerImgUsuaria">
+        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+      </div>
+      <div class="home__inputPublicar">
+        <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+        <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
+        <hr>
+        <div class="likeAndComment">
+          <span>5</span>
+          <i class="fa-solid fa-heart"></i><span>7</span>
+          <i class="fa-solid fa-comment"></i>
+        </div>
+      </div>
+    </div>
+     <!-- Publicaciones -->
+     <div class="home__publicaciones">
+      <div class="containerImgUsuaria">
+        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+      </div>
+      <div class="home__inputPublicar">
+        <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+        <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
+        <hr>
+        <div class="likeAndComment">
+          <span>5</span>
+          <i class="fa-solid fa-heart"></i><span>7</span>
+          <i class="fa-solid fa-comment"></i>
+        </div>
       </div>
     </div>
 
