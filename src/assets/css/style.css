@@ -213,3 +213,135 @@ footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
 }
+
+
+/* Pagina HOME*/
+
+/* Header */
+.header {
+  background-color: var(--dark--color);
+}
+
+.containerRootHome {
+  height: 100vh;
+  background-color: #36363E;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main-home"
+    "nav";
+}
+.header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+}
+
+.main-home {
+  grid-area: main-home;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.nav {
+  grid-area: nav;
+  height: 5rem;
+}
+.home__logoImg {
+  width: 2.5rem;
+}
+.home__title {
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+.iconsColor__header {
+  padding-left: 4rem;
+  font-size: 1.6rem;
+}
+
+/* Main */
+
+.home__publicar, .home__publicaciones {
+ background-color: var(--darkLigth--color);
+ display: flex;
+ padding: 1rem 0;
+ width: 90%;
+ border-radius: 15px;
+ -webkit-border-radius: 15px;
+ -moz-border-radius: 15px;
+ -ms-border-radius: 15px;
+ -o-border-radius: 15px;
+ -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.5); 
+box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
+}
+
+
+.home__imgUsuaria {
+  border-radius: 50%;
+  border: 2px solid var(--rosa--color);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  width: 70%;
+  margin-left: 10px;
+}
+.containerImgUsuaria {
+  width: 30%;
+}
+.home__inputPublicar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+}
+
+.home__description, .home__etiquetas  {
+  background-color: #36363E;
+  height: 3rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  width: 95%;
+  border: 0;
+  color: white;
+  caret-color: var(--rosa--color);
+}
+
+.home__description::placeholder {
+  color: rgba(255, 255, 255, 0.411);
+  font-size: 0.5rem;
+}
+.home__etiquetas {
+  height: 1.5rem;
+}
+.buttonPublicar {
+  width: 30%;
+  border-radius: 30px;
+  height: 1.3rem;
+  background-color: var(--rosa--color);
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+.buttonPublicar:hover {
+  background-color: transparent;
+  color: var(--rosa--color);
+  border: 1px solid var(--rosa--color)
+}
+.nombreUsuarie {
+  color: var(--rosa--color)
+}
+
+.publicarDescripcion {
+  font-size: 0.9rem;
+}
+
+hr {
+  border-color: var(--rosa--color);
+  height: 0.5px;
+  width: 90%;
+}

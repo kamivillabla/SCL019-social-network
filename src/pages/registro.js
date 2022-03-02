@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { footer } from '../component/footer.js';
 import { newRegister, loginGoogle } from '../lib/firebase.js';
 import { calcularEdad } from '../lib/index.js';
