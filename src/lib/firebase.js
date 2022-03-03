@@ -26,7 +26,7 @@ import {
 
 import { app } from "./config-firebase.js";
 import { routes } from "./routes.js";
-import { postDisplay} from "../pages/home.js";
+import { postDisplay } from "../pages/home.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
