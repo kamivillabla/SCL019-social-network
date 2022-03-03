@@ -55,20 +55,8 @@ export const home = () => {
       </div>
     </div>
      <!-- Publicaciones -->
-     <div class="home__publicaciones">
-      <div class="containerImgUsuaria">
-        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
-      </div>
-      <div class="home__inputPublicar">
-        <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-        <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
-        <hr>
-        <div class="likeAndComment">
-          <span>5</span>
-          <i class="fa-solid fa-heart"></i><span>7</span>
-          <i class="fa-solid fa-comment"></i>
-        </div>
-      </div>
+     <div class="home__publicaciones" id="postContainer">
+     
     </div>
 
   </main>
@@ -92,7 +80,30 @@ export const home = () => {
     const descripcion = homeContainer.querySelector("#descripcion").value;
     const etiquetas = homeContainer.querySelector("#etiquetas").value;
 
-    publicar(auth.currentUser.uid, null, descripcion, etiquetas);
+    publicar(auth.currentUser.uid, descripcion, etiquetas);
   });
+  export const postDisplay = (array) => {
+  const postContainer = homeContainer.querySelector("#postContainer");
+  postContainer.innerHTML ="";
+  const postCard =(post)=> {
+   ` <div class="containerImgUsuaria">
+   <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+ </div>
+ <div class="home__inputPublicar">
+   <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+   <p class="publicarDescripcion" id="${post.id}">${post.data.descripcion}</p>
+   <p class="publicarDescripcion">${post.data.etiquetas}</p>
+   <hr>
+   <div class="likeAndComment">
+     <span>5</span>
+     <i class="fa-solid fa-heart"></i><span>7</span>
+     <i class="fa-solid fa-comment"></i>
+   </div>
+ </div>`
+  };
+
+   array.forEach(postCard)
+  }
   return homeContainer;
 };
+

@@ -15,7 +15,8 @@ import {
   sendEmailVerification,
   onAuthStateChanged,
   signOut,
-} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
+} 
+from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
 
 import {
   getFirestore,
@@ -25,6 +26,7 @@ import {
 
 import { app } from "./config-firebase.js";
 import { routes } from "./routes.js";
+import { postDisplay} from "../pages/home.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
@@ -44,18 +46,24 @@ const userData = async (userId, userName, age) => {
 };
 
 //Colección leer datos para despues publicar
-export const publicar = async (userId, title, descripcion, etiquetas) => {
-  try {
-    const docRef = await addDoc(collection(db, "post"), {
-      id: auth.currentUser.uid,
-      title,
-      descripcion,
-      etiquetas,
+export const publicar =  () => {
+    const docRef = query(collection(db, "post"),orderBy("datepost","desc"));
+    onSnapshot(q, (querySnapshot) => {
+      const timeline = [];
+      querySnapshot.forEach((doc) => {
+      timeline.push({
+        id: doc.id,
+        data: doc.data(),
+        etiquetas: doc.data.etiquetas,
+        description: doc.data.descripcion,
+        
+      });
     });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
+    postDisplay(timeline);
+    console.log('title', 'description', timeline.join(', '));
+    return timeline;
+  });
+ 
 };
 
 // Crear nueva cuenta
