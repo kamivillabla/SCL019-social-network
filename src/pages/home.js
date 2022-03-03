@@ -1,7 +1,8 @@
-import { cerrarSesion, publicar } from "../lib/firebase.js";
+import { cerrarSesion, publicar, auth, db } from "../lib/firebase.js";
+
 export const home = () => {
   const homeContainer = document.createElement("div");
-  homeContainer.classList.add('containerRootHome');
+  homeContainer.classList.add("containerRootHome");
   homeContainer.innerHTML = ` 
   <header class="header">
     <img class="home__logoImg" src="assets/img/logoMartini.png" alt="Logo buena muchacha">
@@ -84,13 +85,14 @@ export const home = () => {
   homeContainer.querySelector("#cerrarSesion").addEventListener("click", () => {
     cerrarSesion();
   });
-  //leer datos para publicar
-  homeContainer.querySelector("#publicar").addEventListener("click",()=>{
-    publicar(null, null, null, null) 
+
+  //Leer datos para publicar
+  const post = homeContainer.querySelector("#publicar");
+  post.addEventListener("click", () => {
+    const descripcion = homeContainer.querySelector("#descripcion").value;
+    const etiquetas = homeContainer.querySelector("#etiquetas").value;
+
+    publicar(auth.currentUser.uid, null, descripcion, etiquetas);
   });
   return homeContainer;
 };
-
-
-
-

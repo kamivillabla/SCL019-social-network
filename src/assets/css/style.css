@@ -69,9 +69,7 @@ h1 {
 p {
   font-family: var(--fonts-yaldevi);
   font-size: 1.2rem;
- 
 }
-
 
 /* Página Login movile */
 .containerRoot__grid {
@@ -110,23 +108,24 @@ p {
   text-align: center;
   gap: 1.3rem;
 }
-.displayNone{
+.displayNone {
   display: none;
-  color:rgb(201 0 0);
+  color: rgb(201 0 0);
   font-size: 1rem;
 }
 .linkRegister {
   color: var(--rosa--color);
 }
 
-.buttonLogin, .register__buttonLogin {
+.buttonLogin,
+.register__buttonLogin {
   width: 50%;
   background-color: var(--rosa--color);
 }
 .buttonLogin:hover {
   background-color: transparent;
   color: var(--rosa--color);
-  border: 1px solid var(--rosa--color)
+  border: 1px solid var(--rosa--color);
 }
 
 .register__buttonLogin:hover {
@@ -144,7 +143,7 @@ p {
   margin-right: 10px;
 }
 
-.register__buttonLogin, 
+.register__buttonLogin,
 .buttonLogin,
 .buttonGoogle {
   font-size: 1.2rem;
@@ -191,11 +190,9 @@ p {
 
 /* Pagina home */
 .iconsColor {
-font-size: 1rem;
-color: var(--rosa--color);
+  font-size: 1rem;
+  color: var(--rosa--color);
 }
-
-
 
 /* Footer */
 footer {
@@ -206,14 +203,12 @@ footer {
   height: 8rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  
 }
 footer p,
 footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
 }
-
 
 /* Pagina HOME*/
 
@@ -223,7 +218,7 @@ footer a {
 }
 
 .containerRootHome {
-  background-color: #36363E;
+  background-color: #36363e;
   display: grid;
   grid-template-areas:
     "header"
@@ -263,20 +258,20 @@ footer a {
 
 /* Main */
 
-.home__publicar, .home__publicaciones {
- background-color: var(--darkLigth--color);
- display: flex;
- padding: 1rem 0;
- width: 90%;
- border-radius: 15px;
- -webkit-border-radius: 15px;
- -moz-border-radius: 15px;
- -ms-border-radius: 15px;
- -o-border-radius: 15px;
- -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.5); 
-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
+.home__publicar,
+.home__publicaciones {
+  background-color: var(--darkLigth--color);
+  display: flex;
+  padding: 1rem 0;
+  width: 90%;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
 }
-
 
 .home__imgUsuaria {
   border-radius: 50%;
@@ -298,8 +293,8 @@ box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
   width: 70%;
 }
 
-.home__description, .home__etiquetas  {
-  background-color: #36363E;
+.home__description, .home__etiquetas {
+  background-color: #36363e;
   height: 3rem;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
@@ -330,10 +325,10 @@ box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
 .buttonPublicar:hover {
   background-color: transparent;
   color: var(--rosa--color);
-  border: 1px solid var(--rosa--color)
+  border: 1px solid var(--rosa--color);
 }
 .nombreUsuarie {
-  color: var(--rosa--color)
+  color: var(--rosa--color);
 }
 
 .publicarDescripcion {
@@ -356,7 +351,7 @@ hr {
 }
 .likeAndComment i {
   font-size: 1rem;
-  color: var(--rosa--color)
+  color: var(--rosa--color);
 }
 
 /* Nav */
@@ -364,12 +359,12 @@ hr {
 .nav {
   background-color: var(--dark--color);
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
-  position:sticky;
-	z-index:1000;
-	bottom:0;
+  position: sticky;
+  z-index: 1000;
+  bottom: 0;
 }
 .nav i {
-  font-size: 1.5rem ;
+  font-size: 1.5rem;
 }
