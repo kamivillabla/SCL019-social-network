@@ -22,11 +22,14 @@ import {
   getFirestore,
   collection,
   addDoc,
+  onSnapshot,
+  query,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js";
 
 import { app } from "./config-firebase.js";
 import { routes } from "./routes.js";
-import { postDisplay} from "../pages/home.js";
+import { postDisplay} from "../lib/index.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
@@ -48,7 +51,7 @@ const userData = async (userId, userName, age) => {
 //Colección leer datos para despues publicar
 export const publicar =  () => {
     const docRef = query(collection(db, "post"),orderBy("datepost","desc"));
-    onSnapshot(q, (querySnapshot) => {
+    onSnapshot(docRef, (querySnapshot) => {
       const timeline = [];
       querySnapshot.forEach((doc) => {
       timeline.push({
@@ -60,7 +63,7 @@ export const publicar =  () => {
       });
     });
     postDisplay(timeline);
-    console.log('title', 'description', timeline.join(', '));
+    console.log(etiquetas, descripcion, timeline.join(', '));
     return timeline;
   });
  
