@@ -24,17 +24,19 @@ import {
   addDoc,
   onSnapshot,
   query,
-  orderBy
+  orderBy,
+  doc,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js";
 
 import { app } from "./config-firebase.js";
 import { routes } from "./routes.js";
-import { postDisplay} from "../lib/index.js";
+//import { postDisplay} from "../lib/index.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
 
-//Creando colección de datos (noticia en proceso)
+//Creando colección de datos para
 const userData = async (userId, userName, age) => {
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -48,26 +50,53 @@ const userData = async (userId, userName, age) => {
   }
 };
 
-//Colección leer datos para despues publicar
-export const publicar =  () => {
-    const docRef = query(collection(db, "post"),orderBy("datepost","desc"));
-    onSnapshot(docRef, (querySnapshot) => {
-      const timeline = [];
-      querySnapshot.forEach((doc) => {
-      timeline.push({
-        id: doc.id,
-        data: doc.data(),
-        etiquetas: doc.data.etiquetas,
-        description: doc.data.descripcion,
-        
-      });
+//Leer y guardar datos de post en base de datos
+export const guardarPost = async (descripcion, etiquetas) => {
+  try {
+    const docRef = await addDoc(collection(db, "posts"), {
+      id: auth.currentUser.uid,
+      descripcion,
+      etiquetas,
     });
-    postDisplay(timeline);
-    console.log(etiquetas, descripcion, timeline.join(', '));
-    return timeline;
-  });
- 
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 };
+
+//Prueba para obtener datos de db
+export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
+
+//Leer datos para publicar y mostrar en el timeline
+export const publicar = () => {
+    //const q = query(collection(db, "posts"),orderBy("datepost","desc"));
+    onGetPosts((querySnapshot) => {
+      let postCard = ""
+      //const timeline = []; Este array estaba quedando vacío >:c
+      querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      postCard += `
+      <div class="containerImgUsuaria">
+       <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+       </div>
+       <div class="home__inputPublicar">
+       <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+       <p class="publicarDescripcion" id="descripcion-${post.id}">${post.descripcion}</p>
+       <p class="publicarDescripcion" id="etiquetas">${post.etiquetas}</p>
+       <hr>
+       <div class="likeAndComment">
+        <span>5</span>
+        <i class="fa-solid fa-heart"></i><span>7</span>
+        <i class="fa-solid fa-comment"></i>
+       </div>
+      </div>`    
+      });
+      return postCard
+    });
+  };
+ 
+
+
 
 // Crear nueva cuenta
 export const newRegister = (email, password, userName, age) => {

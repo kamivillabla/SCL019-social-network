@@ -1,10 +1,9 @@
-import { myFunction } from './lib/index.js';
+
 
 import { routes } from './lib/routes.js';
 
 // import { observador } from "./lib/firebase.js";
 
-myFunction();
 
 // eslint-disable-next-line max-len
 
