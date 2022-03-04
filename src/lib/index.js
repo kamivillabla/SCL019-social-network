@@ -16,7 +16,7 @@ export const calcularEdad = (fecha) => {
   return edad;
 };
 
-export const postDisplay = (array) => {
+/*export const postDisplay = (array) => {
   const postContainer = document.querySelector("#postContainer");
   postContainer.innerHTML ="";
   const postCard = (element) => {
@@ -38,6 +38,6 @@ export const postDisplay = (array) => {
 
    array.forEach(postCard)
    return postDisplay
-  }
+  }*/
 
 

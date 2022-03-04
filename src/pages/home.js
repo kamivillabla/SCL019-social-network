@@ -1,4 +1,4 @@
-import { cerrarSesion, guardarPost, publicar, onGetPosts } from "../lib/firebase.js";
+import { cerrarSesion, guardarPost, publicar } from "../lib/firebase.js";
 
 
 export const home = () => {
@@ -44,9 +44,11 @@ export const home = () => {
     cerrarSesion();
   });
   
-  //Prueba para acceder a base de datos
-  console.log(onGetPosts)
-  
+  //Que se carguen los posts sin tener que hacer click
+  window.addEventListener('load', () => {
+    const postContainer = document.querySelector("#postContainer");
+    postContainer.innerHTML = publicar()
+  })
 
   //Leer datos para publicar
   const post = homeContainer.querySelector("#publicar");
@@ -56,12 +58,10 @@ export const home = () => {
 
     guardarPost(descripcion, etiquetas);
 
-    //Intentar llenar div con datos del post (está dando undefined)
-    const postContainer = document.querySelector("#postContainer");
-    postContainer.innerHTML = publicar()
+  //Llenar div con posts de la base de datos
+  const postContainer = document.querySelector("#postContainer");
+  postContainer.innerHTML = publicar()
   });
-  
-  publicar();
 
 
   return homeContainer;

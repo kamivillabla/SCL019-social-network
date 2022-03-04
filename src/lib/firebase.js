@@ -65,17 +65,21 @@ export const guardarPost = async (descripcion, etiquetas) => {
 };
 
 //Prueba para obtener datos de db
-export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
+//export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
+
 
 //Leer datos para publicar y mostrar en el timeline
 export const publicar = () => {
+ const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), orderBy("datepost","desc"), callback)
+ const postContainer = document.querySelector("#postContainer");
     //const q = query(collection(db, "posts"),orderBy("datepost","desc"));
     onGetPosts((querySnapshot) => {
       let postCard = ""
       //const timeline = []; Este array estaba quedando vacío >:c
       querySnapshot.forEach((doc) => {
       const post = doc.data();
-      postCard += `
+      console.log(post);
+      postCard = `
       <div class="containerImgUsuaria">
        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
        </div>
@@ -89,9 +93,11 @@ export const publicar = () => {
         <i class="fa-solid fa-heart"></i><span>7</span>
         <i class="fa-solid fa-comment"></i>
        </div>
-      </div>`    
+      </div>` 
+
+      postContainer.innerHTML += postCard
       });
-      return postCard
+      
     });
   };
  
