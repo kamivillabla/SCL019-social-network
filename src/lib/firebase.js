@@ -21,18 +21,22 @@ import {
   getFirestore,
   collection,
   addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  Timestamp,
+  doc,
+  deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
-
-import { postDisplay } from "../pages/home.js"
 
 import { app } from './config-firebase.js';
 import { routes } from './routes.js';
-import { postDisplay } from '../pages/home.js';
+// import { postDisplay} from "../lib/index.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
 
-// Creando colección de datos (noticia en proceso)
+// Creando colección de datos para Usuario
 const userData = async (userId, userName, age) => {
   try {
     const docRef = await addDoc(collection(db, 'users'), {
@@ -46,23 +50,65 @@ const userData = async (userId, userName, age) => {
   }
 };
 
-// Colección leer datos para despues publicar
+// Leer y guardar datos de post en base de datos
+export const guardarPost = async (descripcion, etiquetas) => {
+  try {
+    const docRef = await addDoc(collection(db, 'posts'), {
+      id: auth.currentUser.uid,
+      datePost: Timestamp.fromDate(new Date()),
+      descripcion,
+      etiquetas,
+    });
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
+// Prueba para obtener datos de db
+// export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
+
+// Leer datos para publicar y mostrar en el timeline
+
+
 export const publicar = () => {
-  const docRef = query(collection(db, 'post'), orderBy('datepost', 'desc'));
-  onSnapshot(q, (querySnapshot) => {
-    const timeline = [];
-    querySnapshot.forEach((doc) => {
-      timeline.push({
-        id: doc.id,
-        data: doc.data(),
-        etiquetas: doc.data.etiquetas,
-        description: doc.data.descripcion,
+  const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), orderBy('datePost', 'desc'), callback);
+  onGetPosts((querySnapshot) => {
+    let postCard = '';
+    // const timeline = []; Este array estaba quedando vacío >:c
+    querySnapshot.forEach((documento) => {
+      const post = documento.data();
+      console.log(post);
+      console.log(documento.id, '=>', documento.data());
+        postCard = `
+      <div class="home__publicaciones">
+          <div class="containerImgUsuaria">
+            <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+          </div>
+          <div class="home__inputPublicar">
+            <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+            <button id="button"> Delete</button>
+            <p class="publicarDescripcion"> ${post.descripcion}.</p>
+            <p class="publicarDescripcion"> ${post.etiquetas}.</p>
+            <hr>
+              <div class="likeAndComment">
+                <span>5</span>
+                <i class="fa-solid fa-heart"></i><span>7</span>
+                <i class="fa-solid fa-comment"></i>
+              </div>
+          </div>
+      </div>`;
+     
+      postContainer.innerHTML += postCard;
+
+      /* Función borrar que todavía no funciona D:*/
+      const buttonDelete = document.getElementById('button');
+      buttonDelete.addEventListener('click', async () => {
+        await deleteDoc(doc(db, 'posts', documento.id));
+        console.log('post borrado');
 
       });
     });
-    postDisplay(timeline);
-    console.log('title', 'description', timeline.join(', '));
-    return timeline;
   });
 };
 
@@ -203,6 +249,7 @@ const verificar = () => {
   });
 };
 
+// Cerra sesión
 export const cerrarSesion = () => {
   signOut(auth)
     .then(() => {
@@ -235,3 +282,32 @@ export const observador = () => {
   });
 };
 observador();
+
+
+/*
+// Agregar post 
+
+export const postCreated = (callback) => {
+  const q = query(collection(db, 'posts'), orderBy('datepost', 'desc'));
+  onSnapshot(q, (querySnapshot) => {
+    const postedPost = [];
+    querySnapshot.forEach((_doc) => {
+      postedPost.push({ ..._doc.data(), id: _doc.id });
+    });
+    callback(postedPost);
+  });
+};
+
+export const deletePost = async (id) => {
+  await deleteDoc(doc(db, 'posts', id));
+};
+
+export const editPost = async (id, titleUp, descriptionUp) => {
+  const postRef = doc(db, 'posts', id);
+  await updateDoc(postRef, {
+    boardgame: titleUp,
+    description: descriptionUp,
+  });
+};
+
+*/

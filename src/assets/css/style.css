@@ -56,6 +56,9 @@ body {
   font-family: var(--fonts-yaldevi);
   color: var(--white--color);
 }
+.bodyHome {
+  background-color: #36363e;
+} 
 
 /* Estilo fuentes Movil */
 
@@ -199,15 +202,21 @@ footer {
   grid-area: footer;
   text-align: center;
   padding-top: 2.5rem;
+
   background-color: var(--darkLigth--color);
   height: 8rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+
+  
 }
 footer p,
 footer a {
   font-size: 1rem;
   color: var(--darkLightTrans--color);
+
 }
 
 /* Pagina HOME*/
@@ -220,6 +229,7 @@ footer a {
 .containerRootHome {
   background-color: #36363e;
   display: grid;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header"
     "main-home"
@@ -263,7 +273,7 @@ footer a {
   background-color: var(--darkLigth--color);
   display: flex;
   padding: 1rem 0;
-  width: 90%;
+  margin-top: 1rem;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -271,7 +281,14 @@ footer a {
   -o-border-radius: 15px;
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
-}
+  width: 80%;
+ }
+ .postContainer {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
 
 .home__imgUsuaria {
   border-radius: 50%;
@@ -361,9 +378,10 @@ hr {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: sticky;
+  position:fixed;
   z-index: 1000;
   bottom: 0;
+  width: 100%;
 }
 .nav i {
   font-size: 1.5rem;

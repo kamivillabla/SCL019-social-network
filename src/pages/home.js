@@ -1,8 +1,9 @@
-import { cerrarSesion, publicar, auth, db } from "../lib/firebase.js";
+/* eslint-disable import/no-cycle */
+import { cerrarSesion, guardarPost, publicar } from '../lib/firebase.js';
 
 export const home = () => {
-  const homeContainer = document.createElement("div");
-  homeContainer.classList.add("containerRootHome");
+  const homeContainer = document.createElement('div');
+  homeContainer.classList.add('containerRootHome');
   homeContainer.innerHTML = ` 
   <header class="header">
     <img class="home__logoImg" src="assets/img/logoMartini.png" alt="Logo buena muchacha">
@@ -22,43 +23,12 @@ export const home = () => {
         <button class="buttonPublicar" id="publicar">Publicar </button> 
       </div>
     </div>
-    <!-- Publicaciones -->
-    <div class="home__publicaciones">
-      <div class="containerImgUsuaria">
-        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
-      </div>
-      <div class="home__inputPublicar">
-        <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-        <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
-        <hr>
-        <div class="likeAndComment">
-          <span>5</span>
-          <i class="fa-solid fa-heart"></i><span>7</span>
-          <i class="fa-solid fa-comment"></i>
-        </div>
-      </div>
-    </div>
-     <!-- Publicaciones -->
-     <div class="home__publicaciones">
-      <div class="containerImgUsuaria">
-        <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
-      </div>
-      <div class="home__inputPublicar">
-        <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-        <p class="publicarDescripcion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, natus.</p>
-        <hr>
-        <div class="likeAndComment">
-          <span>5</span>
-          <i class="fa-solid fa-heart"></i><span>7</span>
-          <i class="fa-solid fa-comment"></i>
-        </div>
-      </div>
-    </div>
-     <!-- Publicaciones -->
-     <div class="home__publicaciones" id="postContainer">
-     
-    </div>
 
+     <!-- Publicaciones -->
+     <div class="postContainer" id="postContainer">
+         <!-- Aquí van los post desplegados -->
+    </div>
+        
   </main>
   <!-- Barra  -->
   <div class="nav">
@@ -70,40 +40,28 @@ export const home = () => {
 
   `;
 
-  homeContainer.querySelector("#cerrarSesion").addEventListener("click", () => {
+  homeContainer.querySelector('#cerrarSesion').addEventListener('click', () => {
     cerrarSesion();
   });
 
-  //Leer datos para publicar
-  const post = homeContainer.querySelector("#publicar");
-  post.addEventListener("click", () => {
-    const descripcion = homeContainer.querySelector("#descripcion").value;
-    const etiquetas = homeContainer.querySelector("#etiquetas").value;
-
-    publicar(auth.currentUser.uid, descripcion, etiquetas);
+  // Que se carguen los posts sin tener que hacer click
+  window.addEventListener('load', () => {
+    const postContainer = document.querySelector('#postContainer');
+    postContainer.innerHTML = publicar();
   });
-  const postDisplay = (array) => {
-  const postContainer = homeContainer.querySelector("#postContainer");
-  postContainer.innerHTML ="";
-  const postCard =(post)=> {
-   ` <div class="containerImgUsuaria">
-   <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
- </div>
- <div class="home__inputPublicar">
-   <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-   <p class="publicarDescripcion" id="${post.id}">${post.data.descripcion}</p>
-   <p class="publicarDescripcion">${post.data.etiquetas}</p>
-   <hr>
-   <div class="likeAndComment">
-     <span>5</span>
-     <i class="fa-solid fa-heart"></i><span>7</span>
-     <i class="fa-solid fa-comment"></i>
-   </div>
- </div>`
-  };
 
-   array.forEach(postCard)
-  }
+  // Leer datos para publicar
+  const post = homeContainer.querySelector('#publicar');
+  post.addEventListener('click', () => {
+    const descripcion = document.querySelector('#descripcion').value;
+    const etiquetas = document.querySelector('#etiquetas').value;
+
+    guardarPost(descripcion, etiquetas);
+
+    // Llenar div con posts de la base de datos
+    const postContainer = document.querySelector('#postContainer');
+    postContainer.innerHTML = publicar();
+  });
+
   return homeContainer;
 };
-
