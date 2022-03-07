@@ -21,3 +21,27 @@ export const calcularEdad = (fecha) => {
   return edad;
 };
 
+export const postDisplay = (array) => {
+  const postContainer = document.querySelector("#postContainer");
+  postContainer.innerHTML ="";
+  const postCard =(post)=> {
+   ` <div class="containerImgUsuaria">
+   <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+ </div>
+ <div class="home__inputPublicar">
+   <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+   <p class="publicarDescripcion" id="descripcion-${post.id}">${post.data.descripcion}</p>
+   <p class="publicarDescripcion" id="etiquetas">${post.data.etiquetas}</p>
+   <hr>
+   <div class="likeAndComment">
+     <span>5</span>
+     <i class="fa-solid fa-heart"></i><span>7</span>
+     <i class="fa-solid fa-comment"></i>
+   </div>
+ </div>`
+  };
+
+   array.forEach(postCard)
+  }
+
+
