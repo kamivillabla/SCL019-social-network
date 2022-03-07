@@ -2,11 +2,6 @@
 /* eslint-disable no-console */
 // aqui exportaras las funciones que necesites
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
-
 // Función de la edad
 export const calcularEdad = (fecha) => {
   const hoy = new Date();
@@ -21,17 +16,17 @@ export const calcularEdad = (fecha) => {
   return edad;
 };
 
-export const postDisplay = (array) => {
+/*export const postDisplay = (array) => {
   const postContainer = document.querySelector("#postContainer");
   postContainer.innerHTML ="";
-  const postCard =(post)=> {
+  const postCard = (element) => {
    ` <div class="containerImgUsuaria">
    <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
  </div>
  <div class="home__inputPublicar">
    <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-   <p class="publicarDescripcion" id="descripcion-${post.id}">${post.data.descripcion}</p>
-   <p class="publicarDescripcion" id="etiquetas">${post.data.etiquetas}</p>
+   <p class="publicarDescripcion" id="descripcion-${element.id}">${element.data().descripcion}</p>
+   <p class="publicarDescripcion" id="etiquetas">${element.data().etiquetas}</p>
    <hr>
    <div class="likeAndComment">
      <span>5</span>
@@ -42,6 +37,7 @@ export const postDisplay = (array) => {
   };
 
    array.forEach(postCard)
-  }
+   return postDisplay
+  }*/
 
 

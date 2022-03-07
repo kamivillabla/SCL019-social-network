@@ -1,8 +1,9 @@
-import { cerrarSesion, publicar, auth, db } from "../lib/firebase.js";
+/* eslint-disable import/no-cycle */
+import { cerrarSesion, guardarPost, publicar } from '../lib/firebase.js';
 
 export const home = () => {
-  const homeContainer = document.createElement("div");
-  homeContainer.classList.add("containerRootHome");
+  const homeContainer = document.createElement('div');
+  homeContainer.classList.add('containerRootHome');
   homeContainer.innerHTML = ` 
   <header class="header">
     <img class="home__logoImg" src="assets/img/logoMartini.png" alt="Logo buena muchacha">
@@ -24,10 +25,10 @@ export const home = () => {
     </div>
 
      <!-- Publicaciones -->
-     <div class="home__publicaciones" id="postContainer">
-     
+     <div class="postContainer" id="postContainer">
+         <!-- Aquí van los post desplegados -->
     </div>
-
+        
   </main>
   <!-- Barra  -->
   <div class="nav">
@@ -39,19 +40,28 @@ export const home = () => {
 
   `;
 
-  homeContainer.querySelector("#cerrarSesion").addEventListener("click", () => {
+  homeContainer.querySelector('#cerrarSesion').addEventListener('click', () => {
     cerrarSesion();
   });
 
-  //Leer datos para publicar
-  const post = homeContainer.querySelector("#publicar");
-  post.addEventListener("click", () => {
-    const descripcion = document.querySelector("#descripcion");
-    const etiquetas = document.querySelector("#etiquetas");
+  // Que se carguen los posts sin tener que hacer click
+  window.addEventListener('load', () => {
+    const postContainer = document.querySelector('#postContainer');
+    postContainer.innerHTML = publicar();
+  });
 
-    publicar(auth.currentUser.uid, descripcion.value, etiquetas.value);
+  // Leer datos para publicar
+  const post = homeContainer.querySelector('#publicar');
+  post.addEventListener('click', () => {
+    const descripcion = document.querySelector('#descripcion').value;
+    const etiquetas = document.querySelector('#etiquetas').value;
+
+    guardarPost(descripcion, etiquetas);
+
+    // Llenar div con posts de la base de datos
+    const postContainer = document.querySelector('#postContainer');
+    postContainer.innerHTML = publicar();
   });
 
   return homeContainer;
 };
-

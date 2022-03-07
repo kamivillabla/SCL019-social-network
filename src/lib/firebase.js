@@ -5,7 +5,6 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,8 +14,8 @@ import {
   sendEmailVerification,
   onAuthStateChanged,
   signOut,
-} 
-from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
+}
+  from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
 
 import {
   getFirestore,
@@ -24,49 +23,93 @@ import {
   addDoc,
   onSnapshot,
   query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js";
+  orderBy,
+  Timestamp,
+  doc,
+  deleteDoc,
+} from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
 
-import { app } from "./config-firebase.js";
-import { routes } from "./routes.js";
-import { postDisplay} from "../lib/index.js";
+import { app } from './config-firebase.js';
+import { routes } from './routes.js';
+// import { postDisplay} from "../lib/index.js";
 
 export const auth = getAuth();
 export const db = getFirestore();
 
-//Creando colección de datos (noticia en proceso)
+// Creando colección de datos para Usuario
 const userData = async (userId, userName, age) => {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, 'users'), {
       id: userId,
       name: userName,
       age,
     });
-    console.log("Document written with ID: ", docRef.id);
+    console.log('Document written with ID: ', docRef.id);
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error('Error adding document: ', e);
   }
 };
 
-//Colección leer datos para despues publicar
-export const publicar =  () => {
-    const docRef = query(collection(db, "post"),orderBy("datepost","desc"));
-    onSnapshot(docRef, (querySnapshot) => {
-      const timeline = [];
-      querySnapshot.forEach((doc) => {
-      timeline.push({
-        id: doc.id,
-        data: doc.data(),
-        etiquetas: doc.data.etiquetas,
-        description: doc.data.descripcion,
-        
+// Leer y guardar datos de post en base de datos
+export const guardarPost = async (descripcion, etiquetas) => {
+  try {
+    const docRef = await addDoc(collection(db, 'posts'), {
+      id: auth.currentUser.uid,
+      datePost: Timestamp.fromDate(new Date()),
+      descripcion,
+      etiquetas,
+    });
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
+// Prueba para obtener datos de db
+// export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
+
+// Leer datos para publicar y mostrar en el timeline
+
+
+export const publicar = () => {
+  const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), orderBy('datePost', 'desc'), callback);
+  onGetPosts((querySnapshot) => {
+    let postCard = '';
+    // const timeline = []; Este array estaba quedando vacío >:c
+    querySnapshot.forEach((documento) => {
+      const post = documento.data();
+      console.log(post);
+      console.log(documento.id, '=>', documento.data());
+        postCard = `
+      <div class="home__publicaciones">
+          <div class="containerImgUsuaria">
+            <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+          </div>
+          <div class="home__inputPublicar">
+            <h3 class="nombreUsuarie">Nombre Usuarie</h3>
+            <button id="button"> Delete</button>
+            <p class="publicarDescripcion"> ${post.descripcion}.</p>
+            <p class="publicarDescripcion"> ${post.etiquetas}.</p>
+            <hr>
+              <div class="likeAndComment">
+                <span>5</span>
+                <i class="fa-solid fa-heart"></i><span>7</span>
+                <i class="fa-solid fa-comment"></i>
+              </div>
+          </div>
+      </div>`;
+     
+      postContainer.innerHTML += postCard;
+
+      /* Función borrar que todavía no funciona D:*/
+      const buttonDelete = document.getElementById('button');
+      buttonDelete.addEventListener('click', async () => {
+        await deleteDoc(doc(db, 'posts', documento.id));
+        console.log('post borrado');
+
       });
     });
-    postDisplay(timeline);
-    console.log(etiquetas, descripcion, timeline.join(', '));
-    return timeline;
   });
- 
 };
 
 // Crear nueva cuenta
@@ -78,9 +121,9 @@ export const newRegister = (email, password, userName, age) => {
       userData(auth.currentUser.uid, userName, age);
       verificar();
       alert(
-        "Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada o spam."
+        'Se ha enviado un correo electrónico de verificación. Por favor revisa tu bandeja de entrada o spam.',
       );
-      window.location.hash = "#/login";
+      window.location.hash = '#/login';
       return user;
     })
     .catch((error) => {
@@ -91,38 +134,38 @@ export const newRegister = (email, password, userName, age) => {
       console.log(errorCode + errorMessage);
       // return errorCode + errorMessage;
       // Llamada constantes
-      const missingEmail = document.getElementById("missinEmail");
-      const loginNulo = document.getElementById("loginEmailNull");
-      const emailInUse = document.getElementById("registerEmailInUse");
-      const weakPassword = document.getElementById("registerWeakPassword");
-      const missingPassword = document.getElementById("missinPassword");
+      const missingEmail = document.getElementById('missinEmail');
+      const loginNulo = document.getElementById('loginEmailNull');
+      const emailInUse = document.getElementById('registerEmailInUse');
+      const weakPassword = document.getElementById('registerWeakPassword');
+      const missingPassword = document.getElementById('missinPassword');
 
       // Error campo correo vacio:
-      if (errorCode == "auth/missing-email") {
-        missingEmail.style.display = "block";
-        emailInUse.style.display = "none";
-        loginNulo.style.display = "none";
+      if (errorCode == 'auth/missing-email') {
+        missingEmail.style.display = 'block';
+        emailInUse.style.display = 'none';
+        loginNulo.style.display = 'none';
       }
-      if (errorCode == "auth/invalid-email") {
-        loginNulo.style.display = "block";
-        missingEmail.style.display = "none";
-        emailInUse.style.display = "none";
+      if (errorCode == 'auth/invalid-email') {
+        loginNulo.style.display = 'block';
+        missingEmail.style.display = 'none';
+        emailInUse.style.display = 'none';
       }
       // Mensaje correo en uso
-      if (errorCode == "auth/email-already-in-use") {
-        emailInUse.style.display = "block";
-        missingEmail.style.display = "none";
-        loginNulo.style.display = "none";
+      if (errorCode == 'auth/email-already-in-use') {
+        emailInUse.style.display = 'block';
+        missingEmail.style.display = 'none';
+        loginNulo.style.display = 'none';
       }
       // Mensaje contraseña demasiado debil (Menos de 6 caracteres)
-      if (errorCode == "auth/weak-password") {
-        weakPassword.style.display = "block";
-        missingPassword.style.display = "none";
+      if (errorCode == 'auth/weak-password') {
+        weakPassword.style.display = 'block';
+        missingPassword.style.display = 'none';
       }
       // Error campo de contraseña vacio
-      if (errorCode == "auth/internal-error") {
-        missingPassword.style.display = "block";
-        weakPassword.style.display = "none";
+      if (errorCode == 'auth/internal-error') {
+        missingPassword.style.display = 'block';
+        weakPassword.style.display = 'none';
       }
     });
   return createUserWithEmailAndPassword;
@@ -139,7 +182,7 @@ export const loginGoogle = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      window.location.hash = "#/home";
+      window.location.hash = '#/home';
     })
     .catch((error) => {
       // Handle Errors here.
@@ -160,9 +203,9 @@ export const loginEmail = (email, password) => {
       // Signed in
       const user = userCredential.user;
       // ...
-      alert("ingresaste");
+      alert('ingresaste');
       // LLeva al home
-      window.location.hash = "#/home";
+      window.location.hash = '#/home';
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -170,29 +213,29 @@ export const loginEmail = (email, password) => {
       console.log(errorCode + errorMessage);
 
       // Constantes
-      const errorContraseña = document.getElementById("loginContrañaInvalida");
-      const loginNulo = document.getElementById("loginEmailNull");
-      const errorEmail = document.getElementById("loginEmailInvalido");
-      const passwordNull = document.getElementById("loginContraseñaVacia");
+      const errorContraseña = document.getElementById('loginContrañaInvalida');
+      const loginNulo = document.getElementById('loginEmailNull');
+      const errorEmail = document.getElementById('loginEmailInvalido');
+      const passwordNull = document.getElementById('loginContraseñaVacia');
       // Contraseña incorrecta
-      if (errorCode == "auth/wrong-password") {
-        errorContraseña.style.display = "block";
-        passwordNull.style.display = "none";
+      if (errorCode == 'auth/wrong-password') {
+        errorContraseña.style.display = 'block';
+        passwordNull.style.display = 'none';
       }
       // Ingresar correo valido
-      if (errorCode == "auth/invalid-email") {
-        loginNulo.style.display = "block";
-        errorEmail.style.display = "none";
+      if (errorCode == 'auth/invalid-email') {
+        loginNulo.style.display = 'block';
+        errorEmail.style.display = 'none';
       }
       // Email invalido
-      if (errorCode == "auth/user-not-found") {
-        errorEmail.style.display = "block";
-        loginNulo.style.display = "none";
+      if (errorCode == 'auth/user-not-found') {
+        errorEmail.style.display = 'block';
+        loginNulo.style.display = 'none';
       }
       // Campo contraseña vacio:
-      if (errorCode == "auth/internal-error") {
-        passwordNull.style.display = "block";
-        errorContraseña.style.display = "none";
+      if (errorCode == 'auth/internal-error') {
+        passwordNull.style.display = 'block';
+        errorContraseña.style.display = 'none';
       }
     });
 };
@@ -200,17 +243,18 @@ export const loginEmail = (email, password) => {
 // Función que envía un correo de verificación al registrarse con email y contraseña.
 const verificar = () => {
   sendEmailVerification(auth.currentUser).then(() => {
-    console.log("Mail enviado");
+    console.log('Mail enviado');
     // Email verification sent!
     // ...
   });
 };
 
+// Cerra sesión
 export const cerrarSesion = () => {
   signOut(auth)
     .then(() => {
-      alert("Chaito");
-      window.location.hash = "#/login";
+      alert('Chaito');
+      window.location.hash = '#/login';
       // Sign-out successful.
     })
     .catch((error) => {
@@ -223,7 +267,7 @@ export const observador = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log(user);
-      window.location.hash = "#/home";
+      window.location.hash = '#/home';
       routes(window.location.hash);
 
       // User is signed in, see docs for a list of available properties
@@ -238,3 +282,32 @@ export const observador = () => {
   });
 };
 observador();
+
+
+/*
+// Agregar post 
+
+export const postCreated = (callback) => {
+  const q = query(collection(db, 'posts'), orderBy('datepost', 'desc'));
+  onSnapshot(q, (querySnapshot) => {
+    const postedPost = [];
+    querySnapshot.forEach((_doc) => {
+      postedPost.push({ ..._doc.data(), id: _doc.id });
+    });
+    callback(postedPost);
+  });
+};
+
+export const deletePost = async (id) => {
+  await deleteDoc(doc(db, 'posts', id));
+};
+
+export const editPost = async (id, titleUp, descriptionUp) => {
+  const postRef = doc(db, 'posts', id);
+  await updateDoc(postRef, {
+    boardgame: titleUp,
+    description: descriptionUp,
+  });
+};
+
+*/
