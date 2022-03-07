@@ -1,10 +1,7 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-unresolved */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unreachable */
-/* eslint-disable no-alert */
-/* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-cycle */
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -25,8 +22,8 @@ import {
   query,
   orderBy,
   Timestamp,
-  doc,
   deleteDoc,
+  doc,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
 
 import { app } from './config-firebase.js';
@@ -49,69 +46,6 @@ const userData = async (userId, userName, age) => {
     console.error('Error adding document: ', e);
   }
 };
-
-// Leer y guardar datos de post en base de datos
-export const guardarPost = async (descripcion, etiquetas) => {
-  try {
-    const docRef = await addDoc(collection(db, 'posts'), {
-      id: auth.currentUser.uid,
-      datePost: Timestamp.fromDate(new Date()),
-      descripcion,
-      etiquetas,
-    });
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
-};
-
-// Prueba para obtener datos de db
-// export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback)
-
-// Leer datos para publicar y mostrar en el timeline
-
-
-export const publicar = () => {
-  const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), orderBy('datePost', 'desc'), callback);
-  onGetPosts((querySnapshot) => {
-    let postCard = '';
-    // const timeline = []; Este array estaba quedando vacío >:c
-    querySnapshot.forEach((documento) => {
-      const post = documento.data();
-      console.log(post);
-      console.log(documento.id, '=>', documento.data());
-        postCard = `
-      <div class="home__publicaciones">
-          <div class="containerImgUsuaria">
-            <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
-          </div>
-          <div class="home__inputPublicar">
-            <h3 class="nombreUsuarie">Nombre Usuarie</h3>
-            <button id="button"> Delete</button>
-            <p class="publicarDescripcion"> ${post.descripcion}.</p>
-            <p class="publicarDescripcion"> ${post.etiquetas}.</p>
-            <hr>
-              <div class="likeAndComment">
-                <span>5</span>
-                <i class="fa-solid fa-heart"></i><span>7</span>
-                <i class="fa-solid fa-comment"></i>
-              </div>
-          </div>
-      </div>`;
-     
-      postContainer.innerHTML += postCard;
-
-      /* Función borrar que todavía no funciona D:*/
-      const buttonDelete = document.getElementById('button');
-      buttonDelete.addEventListener('click', async () => {
-        await deleteDoc(doc(db, 'posts', documento.id));
-        console.log('post borrado');
-
-      });
-    });
-  });
-};
-
 // Crear nueva cuenta
 export const newRegister = (email, password, userName, age) => {
   createUserWithEmailAndPassword(auth, email, password, userName)
@@ -283,31 +217,35 @@ export const observador = () => {
 };
 observador();
 
+/* Agregar data de post */
+export const addData = async (descripcion, etiquetas) => {
+  const docRef = await addDoc(collection(db, 'publicaciones'), {
+    userId: auth.currentUser.uid,
+    /* Despues hay que llamar al nombre  */
+    description: descripcion,
+    etiquet: etiquetas,
+    datePosted: Timestamp.fromDate(new Date()),
+  });
+  return docRef;
+};
 
-/*
-// Agregar post 
-
-export const postCreated = (callback) => {
-  const q = query(collection(db, 'posts'), orderBy('datepost', 'desc'));
+/* Leemos la data de post */
+export const readData = (callback, publicaciones) => {
+  const q = query(collection(db, publicaciones), orderBy('datePosted', 'desc'));
   onSnapshot(q, (querySnapshot) => {
-    const postedPost = [];
-    querySnapshot.forEach((_doc) => {
-      postedPost.push({ ..._doc.data(), id: _doc.id });
+    const posts = [];
+    querySnapshot.forEach((document) => {
+      const element = {};
+      element.id = document.id;
+      element.data = document.data();
+      posts.push({ element });
     });
-    callback(postedPost);
+    callback(posts);
+    console.log(posts);
   });
 };
 
-export const deletePost = async (id) => {
-  await deleteDoc(doc(db, 'posts', id));
+/* Elimina los post */
+export const deletedDataPost = async (id) => {
+  await deleteDoc(doc(db, 'publicaciones', id));
 };
-
-export const editPost = async (id, titleUp, descriptionUp) => {
-  const postRef = doc(db, 'posts', id);
-  await updateDoc(postRef, {
-    boardgame: titleUp,
-    description: descriptionUp,
-  });
-};
-
-*/
