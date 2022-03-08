@@ -309,10 +309,12 @@ footer a {
   gap: 10px;
   width: 70%;
 }
+.home__titulo {
+  height: 1.5rem;
+}
 
-.home__description, .home__etiquetas {
+.home__description, .home__titulo {
   background-color: #36363e;
-  height: 3rem;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
   -moz-border-radius: 0.5rem;
@@ -322,15 +324,14 @@ footer a {
   border: 0;
   color: white;
   caret-color: var(--rosa--color);
-}
+  margin-top: 10px;
+  height: 2rem;
+};
+
 
 .home__description::placeholder {
-  color: rgba(255, 255, 255, 0.411);
-  font-size: 0.5rem;
-}
-.home__etiquetas {
-  height: 1.5rem;
-}
+  font-size: 0.7rem;
+ }
 .buttonPublicar {
   width: 30%;
   border-radius: 30px;

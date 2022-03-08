@@ -34,9 +34,11 @@ export const home = () => {
     </div>
     <div class="home__inputPublicar">
       <h3 class="nombreUsuarie"> Nombre usuarie</h3>
-      <input type="text" class="home__description" id="descripcion" placeholder="¿Qué nos queires contar, buena muchacha?">
-      <input type="text" class="home__etiquetas" id="etiquetas" placeholder="Etiquetas">
-      <button class="buttonPublicar" id="publicar">Publicar </button> 
+      <form class="form-inpus-home" id="reset">
+        <input type="text" class="home__titulo" id="titulo" placeholder="Título">
+        <input type="text" class="home__description" id="descripcion" placeholder="¿Qué nos queires contar, buena muchacha?">
+      </form>
+     <button class="buttonPublicar" id="publicar">Publicar</button> 
     </div>
   </div>
    <!-- Publicaciones -->
@@ -56,11 +58,19 @@ export const home = () => {
 
   containerHome.innerHTML = postHtml;
 
+  /* Guardamos los datos para agregarlos a la data */
   const post = containerHome.querySelector('#publicar');
   post.addEventListener('click', () => {
     const descripcion = containerHome.querySelector('#descripcion').value;
-    const etiquetas = containerHome.querySelector('#etiquetas').value;
-    addData(descripcion, etiquetas);
+    const titulo = containerHome.querySelector('#titulo').value;
+    /* Si los inputs de descripción y titulo estan vacios no se puede publicar */
+    if (descripcion === '' || titulo === '') {
+      alert('Contenido vacio. No puedes publicar');
+    } else {
+      addData(descripcion, titulo);
+      /* Resetea el form cada vez que se le da click al botton para publicar */
+      containerHome.querySelector('#reset').reset();
+    }
   });
   showPost();
 

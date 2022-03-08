@@ -14,7 +14,7 @@ export const newPost = (posts) => {
       <h3 class="nombreUsuarie">nombre usuarie</h3>
       <button value=${postData.element.id} id="button" class="delete" > Delete</button>
       <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
-      <p class="publicarDescripcion"> ${postData.element.data.etiquet}.</p>
+      <p class="publicarDescripcion"> ${postData.element.data.titulos}.</p>
       <hr>
         <div class="likeAndComment">
           <span>5</span>

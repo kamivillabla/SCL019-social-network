@@ -218,12 +218,12 @@ export const observador = () => {
 observador();
 
 /* Agregar data de post */
-export const addData = async (descripcion, etiquetas) => {
+export const addData = async (descripcion, titulo) => {
   const docRef = await addDoc(collection(db, 'publicaciones'), {
     userId: auth.currentUser.uid,
     /* Despues hay que llamar al nombre  */
     description: descripcion,
-    etiquet: etiquetas,
+    titulos: titulo,
     datePosted: Timestamp.fromDate(new Date()),
   });
   return docRef;
