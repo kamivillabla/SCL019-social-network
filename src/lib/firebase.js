@@ -46,6 +46,20 @@ const userData = async (userId, userName, age) => {
     console.error('Error adding document: ', e);
   }
 };
+
+// Crear colección de datos de usuarios de Google
+const googleUsers = async () => {
+  const user = auth.currentUser;
+  if (user !== null) {
+    const docRef = await addDoc(collection(db, "googleUsers"), {
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      photo: user.photoURL,
+    });
+  };
+}
+
 // Crear nueva cuenta
 export const newRegister = (email, password, userName, age) => {
   createUserWithEmailAndPassword(auth, email, password, userName)
@@ -116,6 +130,7 @@ export const loginGoogle = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
+      googleUsers()
       window.location.hash = '#/home';
     })
     .catch((error) => {
