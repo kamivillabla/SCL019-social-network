@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable max-len */
-import { readData, deletedDataPost } from '../lib/firebase.js';
+import { readData, deletedDataPost, auth, likes } from '../lib/firebase.js';
 
 export const newPost = (posts) => {
   const containerPost = document.getElementById('postContainer');
@@ -15,10 +15,11 @@ export const newPost = (posts) => {
       <button value=${postData.element.id} id="button" class="delete" > Delete</button>
       <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
       <p class="publicarDescripcion"> ${postData.element.data.titulos}.</p>
+      <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
       <hr>
         <div class="likeAndComment">
-          <span>5</span>
-          <i class="fa-solid fa-heart"></i><span>7</span>
+          <button class="buttonLike" value=${postData.element.id}> <span class="counterLike">${postData.element.data.likesCounter}</span> <i class="fa-solid fa-heart"></i></button>
+         <span class="counterLike">7</span>
           <i class="fa-solid fa-comment"></i>
         </div>
     </div>
@@ -36,6 +37,16 @@ export const newPost = (posts) => {
       if (confirm('Estas a punto de eliminar tu post! Deseas continuar?')) {
         deletedDataPost(button.value);
       }
+    });
+  });
+
+  /* Dar like */
+  const buttonLike = containerPost.querySelectorAll('.buttonLike');
+  buttonLike.forEach((like) => {
+    like.addEventListener('click', () => {
+      const postIdLike = like.value;
+      const userId = auth.currentUser.uid;
+      likes(postIdLike, userId);
     });
   });
 
