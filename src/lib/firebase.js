@@ -237,6 +237,8 @@ export const addData = async (descripcion, titulo) => {
   const docRef = await addDoc(collection(db, 'publicaciones'), {
     userId: auth.currentUser.uid,
     /* Despues hay que llamar al nombre  */
+    name: auth.currentUser.displayName, 
+    photo: auth.currentUser.photoURL,
     description: descripcion,
     titulos: titulo,
     datePosted: Timestamp.fromDate(new Date()),

@@ -8,10 +8,10 @@ export const newPost = (posts) => {
   const postContent = (postData) => {
     const templatePost = `<div class="home__publicaciones">
     <div class="containerImgUsuaria">
-      <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
+      <img class="home__imgUsuaria" src="${postData.element.data.photo}" alt="Imagen usuarie">
     </div>
     <div class="home__inputPublicar">
-      <h3 class="nombreUsuarie">nombre usuarie</h3>
+      <h3 class="nombreUsuarie">${postData.element.data.name}</h3>
       <button value=${postData.element.id} id="button" class="delete" > Delete</button>
       <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
       <p class="publicarDescripcion"> ${postData.element.data.titulos}.</p>
