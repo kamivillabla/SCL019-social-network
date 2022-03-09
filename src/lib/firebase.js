@@ -24,6 +24,10 @@ import {
   Timestamp,
   deleteDoc,
   doc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
 } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
 
 import { app } from './config-firebase.js';
@@ -39,8 +43,9 @@ const userData = async (userId, userName, age) => {
     const docRef = await addDoc(collection(db, 'users'), {
       id: userId,
       name: userName,
-      age,
+      edad: age,
     });
+
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -51,14 +56,14 @@ const userData = async (userId, userName, age) => {
 const googleUsers = async () => {
   const user = auth.currentUser;
   if (user !== null) {
-    const docRef = await addDoc(collection(db, "googleUsers"), {
+    const docRef = await addDoc(collection(db, 'googleUsers'), {
       name: user.displayName,
       email: user.email,
       uid: user.uid,
       photo: user.photoURL,
     });
-  };
-}
+  }
+};
 
 // Crear nueva cuenta
 export const newRegister = (email, password, userName, age) => {
@@ -130,7 +135,7 @@ export const loginGoogle = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      googleUsers()
+      googleUsers();
       window.location.hash = '#/home';
     })
     .catch((error) => {
@@ -239,6 +244,8 @@ export const addData = async (descripcion, titulo) => {
     /* Despues hay que llamar al nombre  */
     description: descripcion,
     titulos: titulo,
+    likes: [],
+    likesCounter: 0,
     datePosted: Timestamp.fromDate(new Date()),
   });
   return docRef;
@@ -263,4 +270,24 @@ export const readData = (callback, publicaciones) => {
 /* Elimina los post */
 export const deletedDataPost = async (id) => {
   await deleteDoc(doc(db, 'publicaciones', id));
+};
+
+/* Dar like a post */
+export const likes = async (id, usuaria) => {
+  const postRef = doc(db, 'publicaciones', id);
+  const docSnap = await getDoc(postRef);
+  const postData = docSnap.data();
+  const likesCount = postData.likesCounter;
+
+  if (postData.likes.includes(usuaria)) {
+    await updateDoc(postRef, {
+      likes: arrayRemove(usuaria),
+      likesCounter: likesCount - 1,
+    });
+  } else {
+    await updateDoc(postRef, {
+      likes: arrayUnion(usuaria),
+      likesCounter: likesCount + 1,
+    });
+  }
 };

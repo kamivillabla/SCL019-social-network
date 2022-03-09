@@ -15,12 +15,19 @@ input[type="reset"] {
   cursor: pointer;
   outline: inherit;
 }
+button:hover {
+  cursor: pointer;
+}
+i:hover {
+  cursor: pointer;
+}
 input:focus {
   outline: none;
 }
 input[placeholder] {
   padding-left: 1rem;
 }
+
 
 body {
   font-size: 10px;
@@ -223,13 +230,13 @@ footer a {
 
 /* Header */
 .header {
-  background-color: var(--dark--color);
+  background-color: var(--darkLigth--color);
 }
 
 .containerRootHome {
   background-color: #36363e;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 100% auto;
   grid-template-areas:
     "header"
     "main-home"
@@ -238,6 +245,7 @@ footer a {
 .header {
   grid-area: header;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 5rem;
 }
@@ -262,8 +270,15 @@ footer a {
   padding-top: 1rem;
 }
 .iconsColor__header {
-  padding-left: 4rem;
   font-size: 1.6rem;
+
+}
+.LogoAndTitle {
+  display: flex;
+  margin-left: 1rem;
+}
+.icons-door {
+  margin-right: 2rem;
 }
 
 /* Main */
@@ -282,13 +297,23 @@ footer a {
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.308);
   width: 80%;
+  height: auto;
  }
+ 
  .postContainer {
    width: 100%;
    display: flex;
    flex-direction: column;
    align-items: center;
+   margin-bottom: 5rem;
  }
+
+ .containerImgUsuaria {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .home__imgUsuaria {
   border-radius: 50%;
@@ -297,18 +322,17 @@ footer a {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-  width: 70%;
-  margin-left: 10px;
+  width: 5rem;
+  z-index: 1000;
 }
-.containerImgUsuaria {
-  width: 30%;
-}
+
 .home__inputPublicar {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 70%;
 }
+
 .home__titulo {
   height: 1.5rem;
 }
@@ -327,31 +351,51 @@ footer a {
   margin-top: 10px;
   height: 2rem;
 };
+.home__description {
+  height: auto;
+  word-wrap: break-word;
+}
 
 
 .home__description::placeholder {
   font-size: 0.7rem;
+ 
  }
 .buttonPublicar {
-  width: 30%;
+  width: 6rem;
   border-radius: 30px;
   height: 1.3rem;
   background-color: var(--rosa--color);
   align-self: flex-end;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
 }
 .buttonPublicar:hover {
   background-color: transparent;
   color: var(--rosa--color);
   border: 1px solid var(--rosa--color);
 }
-.nombreUsuarie {
+.nombreUsuarie, .nombreUsuarie-perfil {
   color: var(--rosa--color);
+  font-size: 1rem;
+}
+
+.containerNameUsarieYdelete {
+  display: flex;
+  justify-content:space-between;
+}
+
+.icons-delete {
+  font-size: 1.3rem;
+  color: var(--rosa--color);
+  margin-right: 1.5rem;
+
 }
 
 .publicarDescripcion {
-  font-size: 0.8rem;
+   font-size: 1rem;
   width: 95%;
+  height: auto;
 }
 
 hr {
@@ -366,16 +410,24 @@ hr {
   gap: 5px;
   margin-right: 1.5rem;
   align-items: center;
+
+
 }
 .likeAndComment i {
-  font-size: 1rem;
   color: var(--rosa--color);
+  font-size: 1.3rem;
+
+}
+.counterLike {
+  margin-right: 0.3rem;
+  font-size: 1.3rem;
+  margin-left: 0.5rem;
 }
 
 /* Nav */
 
 .nav {
-  background-color: var(--dark--color);
+  background-color:var(--darkLigth--color) ;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -394,6 +446,8 @@ hr {
 .perfilDeUser {
   display: none;
 }
+
+
 
 
 /* Pagina Home en Móviles en horizontal o tablets en vertical */
@@ -454,18 +508,45 @@ hr {
    -ms-border-radius: 15px 15px 0px 0px ;
    -o-border-radius: 15px 15px 0px 0px ;
 }
-  .home__imgUsuaria {
-    width: 5rem;
-    margin-left: 0;
-    margin-top: 20px;
-    z-index: 1000;
-  }
+
   .hr-perfil {
     width: 70%;
   }
   .main-home{
   width: 100%;
 }
+.buttonPublicar {
+  width: 7rem;
+  height: 2rem;
 }
 
+}
 
+/* Pagina Home Tablets en horizonal y desktop tamaño normal */
+@media (min-width: 1024px) {
+  .containerRootHome {
+    background-color: #36363e;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto 100% auto ;
+    grid-template-areas:
+      "header  header"
+     "perfil main-home"
+      "footer footer";
+  }
+  .home__publicar,
+  .home__publicaciones {
+        width: 70%;
+   }
+    .main-home {
+      align-items: flex-start;
+      padding-left: 5rem;
+    }
+    .postContainer {
+      align-items: flex-start;
+    }
+    .buttonPublicar {
+      width: 8rem;
+      height: 2rem;
+    }
+}
