@@ -11,9 +11,10 @@ export const newPost = (posts) => {
       <img class="home__imgUsuaria" src="${postData.element.data.photo}" alt="Imagen usuarie">
     </div>
     <div class="home__inputPublicar">
-      <h3 class="nombreUsuarie">${postData.element.data.name}</h3>
-      <button value=${postData.element.id} id="button" class="delete" > Delete</button>
-      <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
+     <div class="containerNameUsarieYdelete">
+        <h3 class="nombreUsuarie">${postData.element.data.name}</h3>
+       <button class="icons-delete delete" value=${postData.element.id} id="button"><i class="fa-solid fa-trash-arrow-up"></i></button>
+      </div>
       <p class="publicarDescripcion"> ${postData.element.data.titulos}.</p>
       <p class="publicarDescripcion"> ${postData.element.data.description}.</p>
       <hr>

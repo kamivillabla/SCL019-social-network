@@ -519,6 +519,9 @@ hr {
   width: 7rem;
   height: 2rem;
 }
+.postContainer{
+  margin-bottom: 3rem;
+}
 
 }
 
@@ -548,5 +551,8 @@ hr {
     .buttonPublicar {
       width: 8rem;
       height: 2rem;
+    }
+    .postContainer{
+      margin-bottom: 0rem;
     }
 }

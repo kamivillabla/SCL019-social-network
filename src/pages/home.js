@@ -31,7 +31,7 @@ export const home = () => {
 
 </article>
  <!-- Publicar -->
-<main class="main-home">
+ <main class="main-home">
   <div class="home__publicar">
     <div class="containerImgUsuaria">
       <img class="home__imgUsuaria" src="../assets/css/imgUsuarie.png" alt="Imagen usuarie">
