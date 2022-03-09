@@ -522,26 +522,28 @@ hr {
 .postContainer{
   margin-bottom: 3rem;
 }
+
+}
 .buscar{
   position: absolute;
   padding: 5px;
 }
 .buscar input{
-  width: 0px;
+  width: 5px;
   height: 30px;
-  padding: 0 20px;
+  padding: 0 px;
   font-size: 18px;
   color: #020202;
   outline: none;
   border: 1px solid silver;
   border-radius: 30px;
-  transition: all 0.6s ease;
+  transition: all 0.5s ease;
 }
 .btn{
 position: absolute;
 top:0;
-right: 0;
-background:rgb(0, 0, 0);
+right: -25px;
+background:#36363e;
 width: 55px;
 height: 55px;
 line-height: 55px;
@@ -555,8 +557,6 @@ width: 240px;
 }
 .buscar input:focus{
   width: 240px;
-}
-
 }
 
 /* Pagina Home Tablets en horizonal y desktop tamaño normal */
