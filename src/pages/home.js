@@ -10,7 +10,7 @@ export const home = () => {
   <img class="home__logoImg" src="assets/img/logoMartini.png" alt="Logo buena muchacha">
   <h1 class="home__title">BUENAS MUCHACHAS</h1>
  </div>
- <div class="buscar">
+ <div class="buscar buscar-header">
   <input type="text" placeholder="Buscar" required>
   <div class ="btn">
     <i class="fa-solid fa-magnifying-glass iconsColor"></i>

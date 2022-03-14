@@ -527,7 +527,12 @@ hr {
 .buscar{
   position: absolute;
   padding: 5px;
+
 }
+.buscar-header{
+  display: none;
+}
+
 .buscar input{
   width: 5px;
   height: 30px;
@@ -588,5 +593,11 @@ width: 240px;
     }
     .postContainer{
       margin-bottom: 0rem;
+    }
+    .buscar-header{
+      left: 45rem;
+      position: absolute;
+      padding: 5px;
+      display: block;
     }
 }
