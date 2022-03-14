@@ -293,3 +293,12 @@ export const likes = async (id, usuaria) => {
     });
   }
 };
+//editar post 
+export const editar = async(id,tituloUpdate,descripcionUpdate)=> {
+const postRef = doc(db,"publicaciones",id);
+await updateDoc(postRef, {
+  description:descripcionUpdate,
+    titulos: tituloUpdate
+    
+});
+}  
