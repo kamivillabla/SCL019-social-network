@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable max-len */
-import { readData, deletedDataPost, auth, likes } from '../lib/firebase.js';
+import {
+  readData, deletedDataPost, auth, likes,
+} from '../lib/firebase.js';
 
 export const newPost = (posts) => {
   const containerPost = document.getElementById('postContainer');
@@ -16,8 +18,8 @@ export const newPost = (posts) => {
        
       `;
 
-  if (data.element.data.userId === auth.currentUser.uid) {
-     themePost += `<button class="icons-delete delete" value=${data.element.id} id="button"><i class="fa-solid fa-trash-arrow-up"></i></button> 
+    if (data.element.data.userId === auth.currentUser.uid) {
+      themePost += `<button class="icons-delete delete" value=${data.element.id} id="button"><i class="fa-solid fa-trash-arrow-up"></i></button> 
     </div>
         <p class="publicarDescripcion"> ${data.element.data.titulos}.</p>
         <p class="publicarDescripcion"> ${data.element.data.description}.</p>
@@ -30,8 +32,8 @@ export const newPost = (posts) => {
       </div>
   </div>
     `;
-  }else {
-     themePost += `</div>
+    } else {
+      themePost += `</div>
     <p class="publicarDescripcion"> ${data.element.data.titulos}.</p>
     <p class="publicarDescripcion"> ${data.element.data.description}.</p>
     <hr>
@@ -43,8 +45,7 @@ export const newPost = (posts) => {
   </div>
   </div>
     `;
- 
-}
+    }
     containerPost.innerHTML += themePost;
   };
 
