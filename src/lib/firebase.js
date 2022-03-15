@@ -299,6 +299,5 @@ export const editar = async (id, tituloUpdate, descripcionUpdate) => {
   await updateDoc(postRef, {
     description: descripcionUpdate,
     titulos: tituloUpdate,
-
   });
 };
