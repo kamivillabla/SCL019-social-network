@@ -72,7 +72,8 @@ export const newPost = (posts) => {
       likes(postIdLike, userId);
     });
   });
-  // editar post botones 
+  
+// editar post botones 
 const editarPost = containerPost.querySelectorAll(".editar");
 editarPost.forEach((button) =>{
 button.addEventListener('click',() =>{
