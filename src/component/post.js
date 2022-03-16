@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-cycle */
 /* eslint-disable max-len */
 import {

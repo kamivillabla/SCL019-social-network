@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { addData, cerrarSesion } from '../lib/firebase.js';
 import { showPost } from '../component/post.js';
 import { footer } from '../component/footer.js';

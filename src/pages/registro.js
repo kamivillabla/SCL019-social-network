@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
-import { footer } from "../component/footer.js";
-import { newRegister, loginGoogle } from "../lib/firebase.js";
-import { calcularEdad } from "../lib/index.js";
+import { footer } from '../component/footer.js';
+import { newRegister, loginGoogle } from '../lib/firebase.js';
+import { calcularEdad } from '../lib/index.js';
 
 export const register = () => {
   // Acá ira lo que desplegaremos.
-  const registerContainer = document.createElement("div");
-  registerContainer.classList.add("containerRoot__grid");
+  const registerContainer = document.createElement('div');
+  registerContainer.classList.add('containerRoot__grid');
   registerContainer.innerHTML = `
   <div class="logo gridItem">
       <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="logoImg">
@@ -43,33 +43,32 @@ export const register = () => {
 
   // Button Login google
   registerContainer
-    .querySelector("#registerButton")
-    .addEventListener("click", () => {
+    .querySelector('#registerButton')
+    .addEventListener('click', () => {
       loginGoogle();
     });
 
-  //Button register
+  // Button register
 
   registerContainer
-    .querySelector("#registro")
-    .addEventListener("click", (e) => {
+    .querySelector('#registro')
+    .addEventListener('click', (e) => {
       e.preventDefault();
-      const fecha = registerContainer.querySelector("#age").value;
+      const fecha = registerContainer.querySelector('#age').value;
       const edad = calcularEdad(fecha);
       console.log(edad);
 
       if (edad >= 18) {
-        const email = registerContainer.querySelector("#registerEmail").value;
-        const password =
-          registerContainer.querySelector("#registerPassword").value;
-        const userName = registerContainer.querySelector("#userName").value;
+        const email = registerContainer.querySelector('#registerEmail').value;
+        const password = registerContainer.querySelector('#registerPassword').value;
+        const userName = registerContainer.querySelector('#userName').value;
         newRegister(email, password, userName, edad);
       } else if (edad < 18) {
-        const invalidAge = registerContainer.querySelector("#invalidAge");
-        invalidAge.style.display = "block";
-      } else if (edad === "") {
-        const emptyAge = registerContainer.querySelector("#emptyAge");
-        emptyAge.style.display = "block";
+        const invalidAge = registerContainer.querySelector('#invalidAge');
+        invalidAge.style.display = 'block';
+      } else if (edad === '') {
+        const emptyAge = registerContainer.querySelector('#emptyAge');
+        emptyAge.style.display = 'block';
       }
     });
 
