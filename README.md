@@ -11,8 +11,7 @@
 * [7. Implementación de muro/timeline](#7-Implementación-de-muro/timeline)
 
 ## 1. Deploy de aplicación
-El resultado final del proyecto puede revisarse aquí: 
-kuveee.github.io/scl019-social-network/src/#/login
+El resultado final del proyecto puede revisarse [aquí](kuveee.github.io/scl019-social-network/src/#/login)
 
 
 ## 2. Definición de usuaries
