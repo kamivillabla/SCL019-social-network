@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { login } from '../pages/login.js';
 import { register } from '../pages/registro.js';
 import { home } from '../pages/home.js';

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { footer } from '../component/footer.js';
 import { loginGoogle, loginEmail } from '../lib/firebase.js';
 
@@ -6,25 +7,27 @@ export const login = () => {
   const loginContainer = document.createElement('div');
   loginContainer.classList.add('containerRoot__grid');
   loginContainer.innerHTML = `
-  <div class="login__logo login__gridItem">
-      <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class="login__logoImg">
+  <div class=" logo  gridItem">
+      <img src="assets/img/logoMartini.png" alt="Imagen logo alcohdemia" class=" logoImg">
   </div>
-    <main class="login__container login__gridItem">
+    <main class=" container  gridItem">
     <h1>BUENA MUCHACHA</h1>
-      <form id="loginForm" class="login__form login__gridItem">
+      <form id="loginForm" class=" form  gridItem">
         <p>Ingresa tus datos</p>
-        <input type="text" id="loginEmail" placeholder="Email" required>
-        <spam class="login_displayNone" id="loginEmailInvalido">Correo inválido</spam>
-        <input type="password" id="loginPassword" placeholder="Contraseña" required>
-        <spam class="login_displayNone" id="loginContrañaInvalida">Contraseña inválida</spam>
-        <button id="ingreso_login" class="login__buttonLogin" type="submit" role="link">Login</button>
+        <input class="inputNames" type="text" id="loginEmail" placeholder="Correo Electrónico" required>
+        <spam class="displayNone" id="loginEmailInvalido">Este correo no está registrado</spam>
+        <spam class="displayNone" id="loginEmailNull">Ingrese un correo válido</spam>
+        <input class="inputNames" type="password" id="loginPassword" placeholder="Contraseña" required>
+        <spam class="displayNone" id="loginContrañaInvalida">Contraseña inválida</spam>
+        <spam class="displayNone" id="loginContraseñaVacia">Ingresa una contraseña</spam>
+        <button id="ingreso_login" class=" buttonLogin" type="submit" role="link">Iniciar Sesión</button>
         <p>o</p>
-        <button class="login__buttonGoogle" type="button" id="buttonGoogle">
-        <img class="login__buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
+        <button class=" buttonGoogle" type="button" id="buttonGoogle">
+        <img class=" buttonGoogle__img" src="assets/img/google.png" alt="Imagen logo de Google">Continuar con Google
         </button>
       </form>
-      <div class="login__register">
-        <p>¿Aún no tienes una cuenta? <a class="login__linkRegister" href="#/registro">Registrate</a></p>
+      <div class=" register">
+        <p>¿Aún no tienes una cuenta? <a class=" linkRegister" href="#/registro">Regístrate</a></p>
       </div>
   </main>
   `;
@@ -38,20 +41,14 @@ export const login = () => {
   // ingreso login
   loginContainer
     .querySelector('#ingreso_login')
-    .addEventListener('click', () => {
-      // Resetear display de mensajes de error a none
-      const inputEmail = document.getElementById('loginEmailInvalido');
-      inputEmail.style.display = 'none';
-
-      const inputContraseña = document.getElementById('loginContrañaInvalida');
-      inputContraseña.style.display = 'none';
+    .addEventListener('click', (e) => {
+      e.preventDefault();
 
       // Obtener values de los inputs y aplicar la función de login
       const email = loginContainer.querySelector('#loginEmail').value;
       const password = loginContainer.querySelector('#loginPassword').value;
       loginEmail(email, password);
     });
-
   loginContainer.appendChild(footer());
   return loginContainer;
 };
