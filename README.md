@@ -36,8 +36,24 @@ Trabajamos en base a las siguentes dos HU:
 
 
 ## 5. Tests de usabilidad
+Para testear la usabilidad de la primera versión de nuestra app, hicimos un formulario con afirmaciones acerca de su funcionamiento, que les usuaries debían calificar de 1 a 5, siendo 1 "Muy en desacuerdo" y 5 "Muy de acuerdo"
+
+### Resultados
+![test](https://user-images.githubusercontent.com/95220695/161404013-c47c4499-8b7e-4731-9cb8-b4dccd961adb.png)
+
+Además, de las respuestas a cada pregunta, recibimos los siguientes comentarios:
+-Los inputs de inicio de sesión y registro para versión móvil eran demasiado grandes.
+-En versión web, podría ser más cómo que los inputs estuviesen al lado derecho y el logo al izquierdo.
+-No aparecían algunos mensajes de error.
+
+De acuerdo a todo el feedback recibido, iteramos sobre el diseño e hicimos ajustes y correcciones.
 
 
 ## 6. Implementación final
 
+### Versión Móvil
+![Final BM Móvil](https://user-images.githubusercontent.com/95220695/161405074-142203d3-4a3b-4211-8914-d1e3b4491235.png)
+
+### Versión Web
+![Final BM Web](https://user-images.githubusercontent.com/95220695/161405075-b2b93223-3ef9-4db1-ad5e-f3247136edd2.png)
 
