@@ -25,7 +25,7 @@ export const home = () => {
 <article class="perfilDeUser">
   <div class="container-Datos">
     <spam class="barra"></spam>
-    <img class="home__imgUsuaria" src="../assets/img/imgUsuarie.png" alt="Imagen de perfil">
+    <img class="home__imgUsuaria" src="../../assets/img/imgUsuarie.png" alt="Imagen de perfil">
     <h3>usuarie</h3>
     <p>edad</p>
     <hr class="hr-perfil">
@@ -40,7 +40,7 @@ export const home = () => {
  <main class="main-home">
   <div class="home__publicar">
     <div class="containerImgUsuaria">
-      <img class="home__imgUsuaria" src="../assets/img/imgUsuarie.png" alt="Imagen usuarie">
+      <img class="home__imgUsuaria" src="../../assets/img/imgUsuarie.png" alt="Imagen usuarie">
     </div>
     <div class="home__inputPublicar">
       <h3 class="nombreUsuarie-perfil"> Usuarie</h3>
